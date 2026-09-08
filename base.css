@@ -397,6 +397,60 @@ h3 {
 .muro-wrap { margin-top: 30px; }
 .muro { columns: 4; column-gap: 16px; }
 
+/* caja scrolleable: el muro no estira la pagina */
+.muro-marco { position: relative; }
+
+.muro-marco::after {
+  content: "";
+  position: absolute;
+  left: 1px; right: 1px; bottom: 1px;
+  height: 90px;
+  border-radius: 0 0 25px 25px;
+  background: linear-gradient(to top, var(--tinta) 6%, rgba(20,19,15,0));
+  pointer-events: none;
+}
+.sec--claro .muro-marco::after { background: linear-gradient(to top, var(--hueso) 6%, rgba(223,220,215,0)); }
+
+.muro-scroll {
+  max-height: min(78vh, 860px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 18px 18px 40px;
+  border: 1px solid var(--linea);
+  border-radius: 26px;
+  background: rgba(223,220,215,.02);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(223,220,215,.28) transparent;
+}
+
+.muro-scroll::-webkit-scrollbar { width: 9px; }
+.muro-scroll::-webkit-scrollbar-track { background: transparent; }
+.muro-scroll::-webkit-scrollbar-thumb {
+  background: rgba(223,220,215,.22);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.muro-scroll::-webkit-scrollbar-thumb:hover { background: rgba(223,220,215,.4); background-clip: content-box; }
+
+.sec--claro .muro-scroll { border-color: rgba(20,19,15,.14); background: rgba(20,19,15,.02); }
+.sec--claro .muro-scroll { scrollbar-color: rgba(20,19,15,.28) transparent; }
+.sec--claro .muro-scroll::-webkit-scrollbar-thumb { background: rgba(20,19,15,.22); background-clip: content-box; }
+
+/* adentro del scroll las capturas se muestran de una, sin aparicion diferida */
+.js .muro-scroll .tarjeta { opacity: 1; transform: none; transition: border-color .18s, transform .18s var(--curva); }
+.js .muro-scroll .tarjeta:hover { transform: translateY(-2px); }
+
+.muro-nota {
+  margin: 14px 0 0;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--texto-3);
+  text-align: center;
+}
+.sec--claro .muro-nota { color: rgba(20,19,15,.45); }
+
 .tarjeta {
   break-inside: avoid;
   margin: 0 0 16px;
@@ -408,7 +462,8 @@ h3 {
 }
 
 .tarjeta:hover { border-color: rgba(169,173,144,.38); transform: translateY(-2px); }
-.tarjeta img { width: 100%; height: auto; cursor: zoom-in; }
+.tarjeta img { width: 100%; height: auto; cursor: zoom-in; display: block; }
+.tarjeta--captura { line-height: 0; }
 
 .tarjeta-pie {
   padding: 14px 18px 15px;
@@ -592,10 +647,14 @@ h3 {
 
 @media (max-width: 760px) {
   .barra-nav { display: none; }
+  /* en celular el header queda solo con el logo y el boton de la llamada */
+  .barra-link--testi { display: none; }
 }
 
 @media (max-width: 620px) {
   .muro { columns: 1; }
+  .muro-scroll { max-height: 72vh; padding: 14px 14px 34px; border-radius: 20px; }
+  .muro-marco::after { border-radius: 0 0 19px 19px; height: 70px; }
   .caso--v { grid-template-columns: minmax(0, 1fr); }
   .caso--v .video--alto { max-width: 260px; margin: 0 auto; width: 100%; }
   .acciones .btn { width: 100%; text-align: center; }

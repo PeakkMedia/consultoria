@@ -163,10 +163,17 @@
 .panel {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
-  gap: clamp(20px, 3.4vw, 60px);
+  gap: clamp(16px, 2.6vw, 44px);
   align-items: center;
-  padding: clamp(28px, 5vh, 52px) var(--lado) 20px;
+  padding: clamp(18px, 3vh, 32px) var(--lado) 18px;
 }
+
+/* apiladas (celular / pantallas bajas): las areas van bien juntas */
+.escenario:not(.fijo) .panel { padding-top: 26px; padding-bottom: 26px; }
+.escenario:not(.fijo) .panel:first-child { padding-top: 14px; }
+.escenario:not(.fijo) .panel-num { font-size: clamp(44px, 6vw, 64px); margin-bottom: 4px; }
+.escenario:not(.fijo) .panel-texto { gap: 10px; }
+.escenario:not(.fijo) .panel-foto { max-width: 440px; }
 
 .escenario.fijo .panel { position: absolute; inset: 0; will-change: transform, opacity; }
 
@@ -370,7 +377,7 @@
 
 /* ── agenda ─────────────────────────────────────────────────── */
 
-.sec--agenda { position: relative; overflow: hidden; padding: 20px 0 104px; text-align: center; }
+.sec--agenda { position: relative; overflow: hidden; padding: clamp(56px, 7vw, 88px) 0 clamp(64px, 8vw, 104px); text-align: center; }
 
 .sec--agenda::before {
   content: "";
@@ -385,10 +392,29 @@
 }
 
 .sec--agenda .wrap { position: relative; max-width: 1060px; }
+.sec--agenda .pildora { margin-bottom: 22px; }
+.sec--agenda h2 { max-width: 18ch; margin-left: auto; margin-right: auto; }
 .sec--agenda .bajada { margin: 0 auto 40px; max-width: 620px; }
 
-.marco-agenda { border: 1px solid rgba(223,220,215,.16); border-radius: 24px; background: var(--tinta-2); padding: 14px; }
-.marco-agenda iframe { width: 100%; height: 720px; border: 0; border-radius: 16px; display: block; background: var(--tinta); }
+.marco-agenda {
+  border: 1px solid rgba(223,220,215,.16);
+  border-radius: 24px;
+  background: var(--tinta-2);
+  padding: clamp(10px, 1.3vw, 16px);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.marco-agenda iframe {
+  width: 100%;
+  height: 720px;
+  border: 0;
+  border-radius: 16px;
+  display: block;
+  margin: 0 auto;
+  background: var(--tinta);
+  color-scheme: light;
+}
 
 /* ── faq ────────────────────────────────────────────────────── */
 
@@ -399,6 +425,13 @@
 
 .chat-barra { display: flex; align-items: center; gap: 12px; padding: 13px 20px; background: var(--tinta); color: var(--hueso); }
 .chat-barra img { height: 24px; width: auto; flex-shrink: 0; }
+.chat-barra .chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 99px;
+  object-fit: cover;
+  background: var(--tinta-2);
+}
 .chat-quien { flex: 1; min-width: 0; }
 .chat-quien b { display: block; font-size: 15px; font-weight: 600; }
 .chat-quien span { font-size: 12px; color: var(--oliva-claro); }
@@ -449,6 +482,9 @@
   margin-left: auto;
 }
 
+.faq-pregunta.abierta { background: #C8E8B1; }
+.faq-pregunta.abierta .faq-mas { background: var(--tinta); }
+
 .faq-panel { max-height: 0; overflow: hidden; transition: max-height .45s cubic-bezier(.4,0,.2,1); }
 .faq-respuesta { display: flex; gap: 12px; max-width: 86%; }
 .faq-avatar { width: 44px; height: 44px; border-radius: 99px; flex-shrink: 0; object-fit: cover; background: var(--tinta); }
@@ -473,8 +509,16 @@
   .marco-agenda iframe { height: 640px; }
 }
 
+@media (max-width: 760px) {
+  .escenario:not(.fijo) .panel { padding-top: 20px; padding-bottom: 20px; }
+}
+
 @media (max-width: 620px) {
   .fugas { grid-template-columns: 1fr; }
+  .sec--agenda { padding: 56px 0 64px; }
+  .marco-agenda { padding: 8px; border-radius: 18px; }
+  .marco-agenda iframe { height: 580px; border-radius: 12px; }
+  .chat-barra .chat-avatar { width: 34px; height: 34px; }
   .calc-celdas { grid-template-columns: 1fr; }
   .marca-foto { width: 210px; height: 210px; }
   .solucion-cierre .wrap .btn { width: 100%; text-align: center; }

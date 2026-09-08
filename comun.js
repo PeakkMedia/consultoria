@@ -71,17 +71,21 @@ window.montarVideos = function (raiz) {
     /* crea el reproductor */
     var player = document.createElement('wistia-player');
 
-    player.setAttribute('media-id', id);
-    player.setAttribute(
-      'aspect',
-      caja.getAttribute('data-aspect') || '1.7778'
-    );
+player.setAttribute('media-id', id);
 
-    if (caja.hasAttribute('data-popover')) {
-      player.setAttribute('popover', 'true');
-    }
+player.setAttribute(
+  'aspect',
+  caja.getAttribute('data-aspect') || '1.7778'
+);
 
-    caja.appendChild(player);
+player.style.display = 'block';
+player.style.width = '100%';
+
+if (caja.hasAttribute('data-popover')) {
+  player.setAttribute('wistia-popover', '');
+}
+
+caja.appendChild(player);
   });
 };
 

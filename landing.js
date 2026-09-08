@@ -60,7 +60,7 @@
       var altoRiel = riel ? riel.offsetHeight : 64;
       var padTop = Math.max(28, Math.round(H * 0.07));
 
-      escenario.style.height = (H + (total - 1) * Math.round(H * 0.85)) + 'px';
+      escenario.style.height = (H + (total - 1) * Math.round(H * 0.55)) + 'px';
       pin.style.height = H + 'px';
       paneles.forEach(function (p) {
         p.style.borderTop = '';
@@ -230,17 +230,49 @@
   /* ══════════ FAQ ══════════ */
 
   function faq() {
-    [].slice.call(document.querySelectorAll('.faq-pregunta')).forEach(function (btn) {
-      var panel = btn.nextElementSibling;
-      var mas = btn.querySelector('.faq-mas');
-      btn.setAttribute('aria-expanded', 'false');
+    var items = [].slice.call(document.querySelectorAll('.faq-pregunta')).map(function (btn) {
+      return { btn: btn, panel: btn.nextElementSibling, mas: btn.querySelector('.faq-mas') };
+    });
 
-      btn.addEventListener('click', function () {
-        var abierto = panel.style.maxHeight && panel.style.maxHeight !== '0px';
-        panel.style.maxHeight = abierto ? '0px' : panel.scrollHeight + 'px';
-        btn.setAttribute('aria-expanded', abierto ? 'false' : 'true');
-        if (mas) mas.textContent = abierto ? '+' : '–';
+    function cerrar(it) {
+      it.panel.style.maxHeight = '0px';
+      it.btn.setAttribute('aria-expanded', 'false');
+      it.btn.classList.remove('abierta');
+      if (it.mas) it.mas.textContent = '+';
+    }
+
+    function abrir(it) {
+      it.panel.style.maxHeight = it.panel.scrollHeight + 'px';
+      it.btn.setAttribute('aria-expanded', 'true');
+      it.btn.classList.add('abierta');
+      if (it.mas) it.mas.textContent = '–';
+    }
+
+    items.forEach(function (it) {
+      cerrar(it);
+
+      it.btn.addEventListener('click', function () {
+        var estaAbierta = it.btn.getAttribute('aria-expanded') === 'true';
+
+        /* solo una abierta a la vez: al tocar otra, la anterior se cierra */
+        items.forEach(function (otra) { if (otra !== it) cerrar(otra); });
+
+        if (estaAbierta) cerrar(it);
+        else abrir(it);
       });
+    });
+
+    /* si cambia el ancho, recalcula el alto de la que este abierta */
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        items.forEach(function (it) {
+          if (it.btn.getAttribute('aria-expanded') === 'true') {
+            it.panel.style.maxHeight = it.panel.scrollHeight + 'px';
+          }
+        });
+      }, 140);
     });
   }
 

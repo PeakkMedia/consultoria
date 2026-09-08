@@ -67,12 +67,56 @@
 }
 
 .sec--cta .wrap { position: relative; }
-.sec--cta .bajada { color: rgba(223,220,215,.78); margin: 0 auto; }
+.sec--cta h2 { max-width: 20ch; margin-left: auto; margin-right: auto; }
+.sec--cta .bajada { color: rgba(223,220,215,.78); margin: 0 auto; max-width: 58ch; }
+
+.sec--cta .pildora {
+  border-color: rgba(223,220,215,.3);
+  background: rgba(223,220,215,.08);
+  color: rgba(223,220,215,.9);
+}
+.sec--cta .pildora::before { background: var(--oliva-pale); }
+
+/* los tres pasos de la llamada */
+.cta-pasos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 46px 0 42px;
+  text-align: left;
+}
+
+.cta-paso {
+  position: relative;
+  background: rgba(20,19,15,.28);
+  border: 1px solid rgba(223,220,215,.14);
+  border-radius: 22px;
+  padding: 26px 24px 24px;
+}
+
+.cta-paso-num {
+  display: block;
+  font-size: 12.5px;
+  letter-spacing: .2em;
+  font-weight: 800;
+  color: var(--oliva-pale);
+  margin-bottom: 14px;
+}
+
+.cta-paso h3 { font-size: 19px; font-weight: 700; letter-spacing: -.025em; margin: 0 0 8px; }
+.cta-paso p { font-size: 14.5px; line-height: 1.55; color: rgba(223,220,215,.72); margin: 0; }
+
+.cta-acciones { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
 
 .cta { margin-top: 34px; }
-.cta-nota { margin: 16px 0 0; font-size: 13.5px; color: rgba(223,220,215,.6); }
+.cta-nota { margin: 18px 0 0; font-size: 13.5px; color: rgba(223,220,215,.6); }
 
 /* ── responsive ─────────────────────────────────────────────── */
 
+@media (max-width: 980px)  { .cta-pasos { grid-template-columns: 1fr; gap: 12px; margin: 36px 0 34px; } }
 @media (max-width: 900px)  { .cifras { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 620px)  { .cifras { grid-template-columns: 1fr; } }
+@media (max-width: 620px)  {
+  .cifras { grid-template-columns: 1fr; }
+  .cta-paso { padding: 22px 20px 20px; border-radius: 18px; }
+  .cta-acciones .btn { width: 100%; text-align: center; }
+}

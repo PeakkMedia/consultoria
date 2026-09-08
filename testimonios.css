@@ -1,0 +1,78 @@
+/* ══════════════════════════════════════════════════════════════
+   Peakk Media — reseñas (/testimonios)
+   ══════════════════════════════════════════════════════════════ */
+
+.sec { position: relative; }
+
+/* ── portada ────────────────────────────────────────────────── */
+
+.sec--intro {
+  position: relative;
+  padding: clamp(52px, 8vw, 88px) 0 clamp(36px, 5vw, 56px);
+  overflow: hidden;
+}
+
+.sec--intro::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -46%;
+  transform: translateX(-50%);
+  width: 1500px;
+  height: 1100px;
+  background: radial-gradient(
+    rgba(82,44,31,.85)  0%,
+    rgba(82,44,31,.25) 42%,
+    rgba(20,19,15,0)   68%
+  );
+  pointer-events: none;
+}
+
+.sec--intro .wrap { position: relative; }
+.sec--intro .acciones { margin-top: 34px; }
+
+/* ── cifras ─────────────────────────────────────────────────── */
+
+.cifras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 44px; }
+
+.cifra { background: var(--tinta-2); border: 1px solid var(--linea); border-radius: 22px; padding: 24px 24px 22px; }
+.cifra-num { font-size: clamp(32px, 4vw, 46px); line-height: 1; font-weight: 700; letter-spacing: -.04em; color: var(--oliva-claro); margin-bottom: 9px; }
+.cifra-txt { font-size: 14px; line-height: 1.45; color: var(--texto-2); }
+
+/* ── secciones ──────────────────────────────────────────────── */
+
+.sec--dark { padding: clamp(52px, 7vw, 84px) 0 clamp(56px, 8vw, 92px); }
+.sec--verticales { padding-top: 0; }
+
+/* ── cierre ─────────────────────────────────────────────────── */
+
+.sec--cta {
+  position: relative;
+  overflow: hidden;
+  background: var(--tierra);
+  padding: clamp(60px, 9vw, 100px) 0;
+  text-align: center;
+}
+
+.sec--cta::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -55%;
+  transform: translateX(-50%);
+  width: 1300px;
+  height: 900px;
+  background: radial-gradient(rgba(20,19,15,.55) 0%, rgba(20,19,15,0) 66%);
+  pointer-events: none;
+}
+
+.sec--cta .wrap { position: relative; }
+.sec--cta .bajada { color: rgba(223,220,215,.78); margin: 0 auto; }
+
+.cta { margin-top: 34px; }
+.cta-nota { margin: 16px 0 0; font-size: 13.5px; color: rgba(223,220,215,.6); }
+
+/* ── responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 900px)  { .cifras { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px)  { .cifras { grid-template-columns: 1fr; } }

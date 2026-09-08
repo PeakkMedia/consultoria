@@ -10,8 +10,25 @@
      Con el id vacío queda un recuadro punteado y no rompe nada.
      ─────────────────────────────────────────────────────────── */
 
-  window.montarVideos = function (raiz) {
+function cargarPlayerWistia() {
+  if (document.querySelector('script[data-wistia-player]')) return;
+
+  var playerScript = document.createElement('script');
+
+  playerScript.src = 'https://fast.wistia.com/player.js';
+  playerScript.async = true;
+  playerScript.setAttribute('data-wistia-player', '1');
+
+  document.head.appendChild(playerScript);
+}
+
+window.montarVideos = function (raiz) {
   var cajas = (raiz || document).querySelectorAll('[data-wistia]');
+
+  if (!cajas.length) return;
+
+  /* carga una sola vez el reproductor global de Wistia */
+  cargarPlayerWistia();
 
   Array.prototype.forEach.call(cajas, function (caja) {
     if (caja.dataset.montado) return;
@@ -26,7 +43,8 @@
       return;
     }
 
-    if (id.indexOf('/') !== -1) {
+    /* Queremos solamente el media-id */
+    if (!/^[a-zA-Z0-9]+$/.test(id)) {
       console.warn(
         'Wistia: data-wistia debe contener solamente el media-id:',
         id
@@ -38,6 +56,7 @@
       return;
     }
 
+    /* carga el JS específico del video */
     if (!document.querySelector('script[data-wistia-media="' + id + '"]')) {
       var s = document.createElement('script');
 
@@ -49,6 +68,7 @@
       document.head.appendChild(s);
     }
 
+    /* crea el reproductor */
     var player = document.createElement('wistia-player');
 
     player.setAttribute('media-id', id);

@@ -11,37 +11,59 @@
      ─────────────────────────────────────────────────────────── */
 
   window.montarVideos = function (raiz) {
-    var cajas = (raiz || document).querySelectorAll('[data-wistia]');
+  var cajas = (raiz || document).querySelectorAll('[data-wistia]');
 
-    Array.prototype.forEach.call(cajas, function (caja) {
-      if (caja.dataset.montado) return;
-      caja.dataset.montado = '1';
+  Array.prototype.forEach.call(cajas, function (caja) {
+    if (caja.dataset.montado) return;
 
-      /* acepta el link completo o el id suelto */
-      var bruto = (caja.getAttribute('data-wistia') || '').trim();
-      var id = bruto.replace(/[?#].*$/, '').split('/').filter(Boolean).pop() || '';
+    caja.dataset.montado = '1';
 
-      if (!id) {
-        caja.innerHTML = '<span class="video-vacio">Pegá el id de Wistia en data-wistia</span>';
-        return;
-      }
+    var id = (caja.getAttribute('data-wistia') || '').trim();
 
-      if (!document.querySelector('script[data-wistia-media="' + id + '"]')) {
-        var s = document.createElement('script');
-        s.src = 'https://fast.wistia.com/embed/' + id + '.js';
-        s.async = true;
-        s.type = 'module';
-        s.setAttribute('data-wistia-media', id);
-        document.head.appendChild(s);
-      }
+    if (!id) {
+      caja.innerHTML =
+        '<span class="video-vacio">Pegá el media-id de Wistia en data-wistia</span>';
+      return;
+    }
 
-      var player = document.createElement('wistia-player');
-      player.setAttribute('media-id', id);
-      player.setAttribute('aspect', caja.getAttribute('data-aspect') || '1.7778');
-      if (caja.hasAttribute('data-popover')) player.setAttribute('popover', 'true');
-      caja.appendChild(player);
-    });
-  };
+    if (id.indexOf('/') !== -1) {
+      console.warn(
+        'Wistia: data-wistia debe contener solamente el media-id:',
+        id
+      );
+
+      caja.innerHTML =
+        '<span class="video-vacio">Usá el media-id de Wistia, no el link completo</span>';
+
+      return;
+    }
+
+    if (!document.querySelector('script[data-wistia-media="' + id + '"]')) {
+      var s = document.createElement('script');
+
+      s.src = 'https://fast.wistia.com/embed/' + id + '.js';
+      s.async = true;
+      s.type = 'module';
+      s.setAttribute('data-wistia-media', id);
+
+      document.head.appendChild(s);
+    }
+
+    var player = document.createElement('wistia-player');
+
+    player.setAttribute('media-id', id);
+    player.setAttribute(
+      'aspect',
+      caja.getAttribute('data-aspect') || '1.7778'
+    );
+
+    if (caja.hasAttribute('data-popover')) {
+      player.setAttribute('popover', 'true');
+    }
+
+    caja.appendChild(player);
+  });
+};
 
   /* ── imágenes que todavía no subiste ──────────────────────────
      Con data-opcional, si el archivo no existe se reemplaza por un

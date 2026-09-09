@@ -60,7 +60,7 @@
 /* ── calendario ─────────────────────────────────────────────── */
 
 .sec--calendario { padding: 0 0 clamp(64px, 8vw, 104px); text-align: center; }
-.sec--calendario .wrap { max-width: 1060px; }
+.sec--calendario .wrap { max-width: 1240px; }
 
 .marco-calendario {
   border: 1px solid rgba(223,220,215,.16);
@@ -68,14 +68,15 @@
   background: var(--tinta-2);
   padding: clamp(10px, 1.3vw, 16px);
   width: 100%;
-  max-width: 900px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
 /* Pegá acá adentro el iframe de iClosed. Se estira solo. */
 .marco-calendario iframe {
   width: 100%;
-  height: 720px;
+  min-height: 780px;
+  height: 780px;
   border: 0;
   border-radius: 16px;
   display: block;
@@ -87,7 +88,7 @@
 .calendario-hueco {
   border: 1px dashed rgba(223,220,215,.3);
   border-radius: 16px;
-  min-height: 420px;
+  min-height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,7 +103,7 @@
 
 @media (max-width: 620px) {
   .marco-calendario { padding: 8px; border-radius: 18px; }
-  .marco-calendario iframe { height: 580px; border-radius: 12px; }
+  .marco-calendario iframe { height: 760px; min-height: 760px; border-radius: 12px; }
 }
 
 /* ── pasos ──────────────────────────────────────────────────── */
@@ -207,6 +208,42 @@
 .salto span { font-size: 15.5px; font-weight: 600; letter-spacing: -.015em; }
 
 @media (max-width: 620px) { .saltos { grid-template-columns: 1fr; } }
+
+
+/* ── formularios y calendarios embebidos ────────────────────────
+   Airtable y el widget de calendario de GoHighLevel vienen con
+   fondo claro, asi que les damos un marco hueso en vez del oscuro
+   del resto del sitio. Si no, se ve un parche blanco flotando.
+   ─────────────────────────────────────────────────────────── */
+
+.marco-embed {
+  border: 1px solid rgba(223,220,215,.16);
+  border-radius: 24px;
+  background: var(--hueso);
+  padding: clamp(8px, 1.1vw, 14px);
+  width: 100%;
+  margin: 26px auto 0;
+  overflow: hidden;
+}
+
+.marco-embed iframe {
+  width: 100%;
+  border: 0;
+  display: block;
+  border-radius: 16px;
+  background: #fff;
+  color-scheme: light;
+}
+
+.marco-embed--form iframe { height: 1533px; min-height: 1533px; }
+.marco-embed--agenda iframe { height: 760px; min-height: 760px; }
+
+@media (max-width: 620px) {
+  .marco-embed { padding: 6px; border-radius: 18px; }
+  .marco-embed iframe { border-radius: 13px; }
+  .marco-embed--form iframe { height: 1700px; min-height: 1700px; }
+  .marco-embed--agenda iframe { height: 820px; min-height: 820px; }
+}
 
 /* ── páginas legales ────────────────────────────────────────── */
 

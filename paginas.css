@@ -29,7 +29,12 @@
   line-height: 1.4;
 }
 
-@media (max-width: 620px) { .aviso { font-size: 13px; padding: 11px 16px; } }
+@media (max-width: 620px) {
+  .aviso {
+    font-size: 13px;
+    padding: 11px 16px;
+  }
+}
 
 /* ── portada corta ──────────────────────────────────────────── */
 
@@ -48,18 +53,33 @@
   transform: translateX(-50%);
   width: 1400px;
   height: 1000px;
-  background: radial-gradient(rgba(82,44,31,.8) 0%, rgba(82,44,31,.22) 44%, rgba(20,19,15,0) 70%);
+  background: radial-gradient(
+    rgba(82,44,31,.8) 0%,
+    rgba(82,44,31,.22) 44%,
+    rgba(20,19,15,0) 70%
+  );
   pointer-events: none;
 }
 
 .sec--cabecera .wrap { position: relative; }
-.sec--cabecera h1 { max-width: 20ch; margin-left: auto; margin-right: auto; }
+.sec--cabecera h1 {
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
+}
 .sec--cabecera .bajada { margin: 0 auto; }
-.sec--cabecera .acciones { justify-content: center; margin-top: 30px; }
+.sec--cabecera .acciones {
+  justify-content: center;
+  margin-top: 30px;
+}
 
 /* ── calendario ─────────────────────────────────────────────── */
 
-.sec--calendario { padding: 0 0 clamp(64px, 8vw, 104px); text-align: center; }
+.sec--calendario {
+  padding: 0 0 clamp(64px, 8vw, 104px);
+  text-align: center;
+}
+
 .sec--calendario .wrap { max-width: 1240px; }
 
 .marco-calendario {
@@ -99,16 +119,42 @@
   color: var(--texto-3);
 }
 
-.calendario-nota { margin: 18px 0 0; font-size: 13px; color: var(--texto-3); }
+.calendario-nota {
+  margin: 18px 0 0;
+  font-size: 13px;
+  color: var(--texto-3);
+}
 
 @media (max-width: 620px) {
-  .marco-calendario { padding: 8px; border-radius: 18px; }
-  .marco-calendario iframe { height: 760px; min-height: 760px; border-radius: 12px; }
+  .marco-calendario {
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .marco-calendario iframe {
+    height: 760px;
+    min-height: 760px;
+    border-radius: 12px;
+  }
 }
 
 /* ── pasos ──────────────────────────────────────────────────── */
 
-.sec--pasos { padding: clamp(20px, 3vw, 34px) 0 clamp(64px, 8vw, 100px); }
+.sec--pasos {
+  padding: clamp(20px, 3vw, 34px) 0 clamp(64px, 8vw, 100px);
+}
+
+/*
+  Onboarding más ancho.
+  Esto afecta únicamente al bloque #pasos y no al resto de las páginas.
+*/
+#pasos .wrap--angosto {
+  max-width: 1180px;
+}
+
+#pasos .paso {
+  width: 100%;
+}
 
 .paso {
   border: 1px solid var(--linea);
@@ -136,11 +182,21 @@
   margin-bottom: 18px;
 }
 
-.paso h2 { font-size: clamp(24px, 3vw, 38px); margin-bottom: 12px; }
+.paso h2 {
+  font-size: clamp(24px, 3vw, 38px);
+  margin-bottom: 12px;
+}
+
 .paso .bajada { max-width: 60ch; }
 .paso .acciones { margin-top: 24px; }
 
-.paso-lista { margin: 22px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.paso-lista {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
 
 .paso-lista li {
   display: flex;
@@ -151,12 +207,16 @@
   color: var(--texto-2);
 }
 
-.paso-lista li b { color: var(--hueso); font-weight: 700; }
+.paso-lista li b {
+  color: var(--hueso);
+  font-weight: 700;
+}
 
 .paso-lista li::before {
   content: "✓";
   flex: 0 0 auto;
-  width: 22px; height: 22px;
+  width: 22px;
+  height: 22px;
   margin-top: 1px;
   border-radius: 99px;
   background: rgba(114,118,93,.18);
@@ -178,7 +238,12 @@
   color: var(--texto-2);
 }
 
-.paso-firma { margin: 22px 0 0; font-size: 15px; font-weight: 700; color: var(--oliva-pale); }
+.paso-firma {
+  margin: 22px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--oliva-pale);
+}
 
 .marco-video {
   margin-top: 26px;
@@ -188,10 +253,19 @@
   background: var(--tinta);
 }
 
-.marco-video .video--alto { max-width: 340px; margin: 0 auto; }
+.marco-video .video--alto {
+  max-width: 340px;
+  margin: 0 auto;
+}
 
 /* botones de salto */
-.saltos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+
+.saltos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
 
 .salto {
   display: block;
@@ -203,16 +277,35 @@
   transition: border-color .18s, transform .18s var(--curva);
 }
 
-.salto:hover { border-color: rgba(169,173,144,.4); transform: translateY(-2px); }
-.salto b { display: block; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--oliva-claro); margin-bottom: 6px; }
-.salto span { font-size: 15.5px; font-weight: 600; letter-spacing: -.015em; }
+.salto:hover {
+  border-color: rgba(169,173,144,.4);
+  transform: translateY(-2px);
+}
 
-@media (max-width: 620px) { .saltos { grid-template-columns: 1fr; } }
+.salto b {
+  display: block;
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--oliva-claro);
+  margin-bottom: 6px;
+}
 
+.salto span {
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -.015em;
+}
 
-/* ── formularios y calendarios embebidos ────────────────────────
+@media (max-width: 620px) {
+  .saltos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── formularios y calendarios embebidos ─────────────────────
    Airtable y el widget de calendario de GoHighLevel vienen con
-   fondo claro, asi que les damos un marco hueso en vez del oscuro
+   fondo claro, así que les damos un marco hueso en vez del oscuro
    del resto del sitio. Si no, se ve un parche blanco flotando.
    ─────────────────────────────────────────────────────────── */
 
@@ -235,19 +328,47 @@
   color-scheme: light;
 }
 
-.marco-embed--form iframe { height: 1533px; min-height: 1533px; }
-.marco-embed--agenda iframe { height: 760px; min-height: 760px; }
+/*
+  !important evita que scripts externos de embeds
+  intenten achicar la altura del iframe.
+*/
+.marco-embed--form iframe {
+  height: 1533px !important;
+  min-height: 1533px !important;
+}
+
+.marco-embed--agenda iframe {
+  height: 760px !important;
+  min-height: 760px !important;
+}
 
 @media (max-width: 620px) {
-  .marco-embed { padding: 6px; border-radius: 18px; }
-  .marco-embed iframe { border-radius: 13px; }
-  .marco-embed--form iframe { height: 1700px; min-height: 1700px; }
-  .marco-embed--agenda iframe { height: 820px; min-height: 820px; }
+  .marco-embed {
+    padding: 6px;
+    border-radius: 18px;
+  }
+
+  .marco-embed iframe {
+    border-radius: 13px;
+  }
+
+  .marco-embed--form iframe {
+    height: 1700px !important;
+    min-height: 1700px !important;
+  }
+
+  .marco-embed--agenda iframe {
+    height: 820px !important;
+    min-height: 820px !important;
+  }
 }
 
 /* ── páginas legales ────────────────────────────────────────── */
 
-.sec--legal { padding: clamp(40px, 5vw, 64px) 0 clamp(64px, 8vw, 100px); }
+.sec--legal {
+  padding: clamp(40px, 5vw, 64px) 0 clamp(64px, 8vw, 100px);
+}
+
 .sec--legal .wrap { max-width: 860px; }
 
 .legal-meta {
@@ -268,7 +389,11 @@
   border-top: 1px solid var(--linea);
 }
 
-.legal > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.legal > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
 
 .legal h3 {
   font-size: 17px;
@@ -286,12 +411,28 @@
   max-width: 72ch;
 }
 
-.legal p strong, .legal li strong { color: var(--hueso); font-weight: 700; }
+.legal p strong,
+.legal li strong {
+  color: var(--hueso);
+  font-weight: 700;
+}
 
-.legal a { color: var(--oliva-claro); text-decoration: underline; text-underline-offset: 3px; }
+.legal a {
+  color: var(--oliva-claro);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .legal a:hover { color: var(--oliva-pale); }
 
-.legal ul { margin: 0 0 18px; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 72ch; }
+.legal ul {
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  max-width: 72ch;
+}
 
 .legal ul li {
   position: relative;
@@ -306,7 +447,8 @@
   position: absolute;
   left: 2px;
   top: .68em;
-  width: 6px; height: 6px;
+  width: 6px;
+  height: 6px;
   border-radius: 99px;
   background: var(--oliva);
 }
@@ -347,9 +489,17 @@
   color: var(--texto-2);
 }
 
-.legal-indice a { color: inherit; text-decoration: none; }
+.legal-indice a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .legal-indice a:hover { color: var(--oliva-claro); }
 
 @media (max-width: 620px) {
-  .legal-caja, .legal-indice { padding: 20px; border-radius: 18px; }
+  .legal-caja,
+  .legal-indice {
+    padding: 20px;
+    border-radius: 18px;
+  }
 }

@@ -228,6 +228,16 @@ h3 {
 .barra-logo { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
 .barra-logo img { height: 26px; width: auto; }
 
+.barra-marca {
+  font-size: 15.5px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--hueso);
+  white-space: nowrap;
+  transition: color .18s;
+}
+.barra-logo:hover .barra-marca { color: var(--oliva-pale); }
+
 .barra-nav {
   display: flex;
   align-items: center;
@@ -557,7 +567,18 @@ h3 {
   border-bottom: 1px solid var(--linea);
 }
 
-.pie-logo { height: 30px; width: auto; opacity: .9; margin-bottom: 16px; }
+.pie-marca { display: inline-flex; align-items: center; gap: 11px; margin-bottom: 16px; }
+.pie-logo { height: 30px; width: auto; opacity: .9; }
+
+.pie-marca-nombre {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--hueso);
+  white-space: nowrap;
+  transition: color .18s;
+}
+.pie-marca:hover .pie-marca-nombre { color: var(--oliva-pale); }
 
 .pie-lema { font-size: 15px; line-height: 1.55; color: rgba(223,220,215,.55); margin: 0; max-width: 40ch; }
 
@@ -652,6 +673,8 @@ h3 {
 }
 
 @media (max-width: 620px) {
+  .barra-marca { font-size: 13.5px; }
+  .barra-logo img { height: 23px; }
   .muro { columns: 1; }
   .muro-scroll { max-height: 72vh; padding: 14px 14px 34px; border-radius: 20px; }
   .muro-marco::after { border-radius: 0 0 19px 19px; height: 70px; }

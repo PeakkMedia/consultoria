@@ -30,6 +30,7 @@
   <div class="barra-inner barra-inner--centro">
     <a class="barra-logo" href="/" aria-label="Peakk Media">
       <img src="assets/logo.png" alt="Peakk Media" width="260" height="100">
+      <span class="barra-marca">Peakk Media</span>
     </a>
   </div>
 </header>
@@ -37,7 +38,9 @@
 <!-- ══════════ CABECERA ══════════ -->
 <section class="sec sec--cabecera">
   <div class="wrap">
-    <h1>Reservá tu reunión</h1>
+    <p class="pildora">Sesión de proyección · Cupos limitados</p>
+    <h1>Reservá tu sesión de proyección</h1>
+    <p class="bajada">Vamos a proyectar juntos a dónde puede llegar tu marca en los próximos seis meses y qué hace falta para llegar.</p>
   </div>
 </section>
 
@@ -45,12 +48,28 @@
 <section class="sec sec--calendario">
   <div class="wrap">
 
-    <div class="iclosed-widget" data-url="https://app.iclosed.io/e/peakkmedia/proyeccion-peakk-media" title="Reunión de Proyección" style="width: 100%; height: 620px"></div> <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+    <div class="marco-calendario">
+      <!-- ═══════════════════════════════════════════════════════
+           CALENDARIO DE PROYECCIÓN — /calendario-proyeccion (usa otro iClosed)
 
-    <p class="calendario-nota">Si el calendario no carga, escribinos por WhatsApp.</p>
+           Pegá acá adentro el iframe de iClosed y borrá el bloque
+           .calendario-hueco de abajo. El iframe se estira solo:
+           no le pongas width ni height, ya los toma del CSS.
+
+           <iframe src="https://app.iclosed.io/e/USUARIO/EVENTO"
+                   title="Calendario de Peakk Media" loading="lazy"></iframe>
+           ═════════════════════════════════════════════════════ -->
+
+      <div class="calendario-hueco">
+        Acá va el iframe de iClosed.<br>
+        Reemplazá este bloque por el &lt;iframe&gt; dentro de .marco-calendario.
+      </div>
+    </div>
+
+    <p class="calendario-nota">Si el calendario no carga, escribinos por WhatsApp y lo coordinamos a mano.</p>
 
     <div class="acciones" style="justify-content:center;margin-top:26px">
-      <a class="btn btn--fantasma" href="https://wa.me/5491161354143?text=Hola!%20Quiero%20agendar%20mi%20Reunión%20de%20Proyección." target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp</a>
+      <a class="btn btn--fantasma" href="https://wa.me/5491161354143?text=Hola!%20Acabo%20de%20agendar%20mi%20llamada%20con%20Peakk%20Media." target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp</a>
     </div>
   </div>
 </section>
@@ -60,7 +79,10 @@
   <div class="wrap">
     <div class="pie-grid">
       <div>
-        <img class="pie-logo" src="assets/logo.png" alt="Peakk Media" width="260" height="100">
+        <a class="pie-marca" href="/" aria-label="Peakk Media">
+          <img class="pie-logo" src="assets/logo.png" alt="Peakk Media" width="260" height="100">
+          <span class="pie-marca-nombre">Peakk Media</span>
+        </a>
         <p class="pie-lema">Construyendo la comunidad más grande y exitosa de marcas de ecommerce en Latinoamérica.</p>
       </div>
       <div>

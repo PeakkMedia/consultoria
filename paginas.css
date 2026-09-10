@@ -329,22 +329,17 @@
 }
 
 /*
-  Formulario de Airtable: altura fija.
-  !important evita que scripts externos intenten achicarlo.
+  !important evita que scripts externos de embeds
+  intenten achicar la altura del iframe.
 */
 .marco-embed--form iframe {
   height: 1533px !important;
   min-height: 1533px !important;
 }
 
-/*
-  Calendario de GoHighLevel: altura fija con margen de sobra
-  para que entren el calendario, los horarios y la zona horaria.
-  Si igual faltara lugar, el iframe tiene scroll habilitado.
-*/
 .marco-embed--agenda iframe {
-  height: 1050px !important;
-  min-height: 1050px !important;
+  height: 760px !important;
+  min-height: 760px !important;
 }
 
 @media (max-width: 620px) {
@@ -362,10 +357,9 @@
     min-height: 1700px !important;
   }
 
-  /* En celular el calendario y los horarios se apilan: necesita más alto */
   .marco-embed--agenda iframe {
-    height: 1500px !important;
-    min-height: 1500px !important;
+    height: 820px !important;
+    min-height: 820px !important;
   }
 }
 

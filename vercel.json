@@ -33,6 +33,10 @@
     {
       "source": "/onboarding",
       "destination": "/onboarding.html"
+    },
+    {
+      "source": "/confirma-tu-llamada-video",
+      "destination": "/confirma-tu-llamada-video.html"
     }
   ],
   "headers": [

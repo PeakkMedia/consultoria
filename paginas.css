@@ -338,14 +338,13 @@
 }
 
 /*
-  Calendario de GoHighLevel: SIN !important.
-  El script form_embed.js de GHL ajusta la altura solo según
-  el contenido (días, horarios, zona horaria). Esta altura es
-  solo de respaldo por si el script no llega a cargar.
+  Calendario de GoHighLevel: altura fija con margen de sobra
+  para que entren el calendario, los horarios y la zona horaria.
+  Si igual faltara lugar, el iframe tiene scroll habilitado.
 */
 .marco-embed--agenda iframe {
-  height: 1000px;
-  min-height: 700px;
+  height: 1050px !important;
+  min-height: 1050px !important;
 }
 
 @media (max-width: 620px) {
@@ -365,8 +364,8 @@
 
   /* En celular el calendario y los horarios se apilan: necesita más alto */
   .marco-embed--agenda iframe {
-    height: 1400px;
-    min-height: 700px;
+    height: 1500px !important;
+    min-height: 1500px !important;
   }
 }
 

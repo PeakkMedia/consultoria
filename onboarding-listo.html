@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario recibido — Peakk Media</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Esta página se ve adentro del marco blanco del formulario */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #fff; }
+    body {
+      font-family: "Archivo", system-ui, sans-serif;
+      color: #14130F;
+      display: flex;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .caja { max-width: 440px; }
+    .check {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 22px;
+      border-radius: 99px;
+      background: #72765D;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      font-size: 26px;
+      letter-spacing: -.03em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #55534C;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="caja">
+    <div class="check" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.5l4.5 4.5L19 7.5"></path>
+      </svg>
+    </div>
+    <h1>¡Recibimos tu formulario!</h1>
+    <p>Ya se habilitó el calendario. Bajá al Paso 02 para agendar tu llamada de onboarding.</p>
+  </div>
+
+  <script>
+    (function () {
+      var CLAVE = 'peakk_onboarding_form_ok';
+      var MENSAJE = 'peakk-onboarding-form-enviado';
+
+      try { localStorage.setItem(CLAVE, '1'); } catch (e) {}
+
+      var enIframe = window.self !== window.top;
+
+      if (enIframe) {
+        // Cargó adentro del iframe del formulario: aviso a la página de onboarding
+        try {
+          window.parent.postMessage({ tipo: MENSAJE }, window.location.origin);
+        } catch (e) {}
+      } else {
+        // Cargó como página suelta (misma pestaña o pestaña nueva): vuelvo al Paso 02
+        window.location.replace('/onboarding#paso-2');
+      }
+    })();
+  </script>
+</body>
+</html>

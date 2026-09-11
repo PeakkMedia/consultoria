@@ -329,17 +329,22 @@
 }
 
 /*
-  !important evita que scripts externos de embeds
-  intenten achicar la altura del iframe.
+  Formulario de Airtable: altura fija.
+  !important evita que scripts externos intenten achicarlo.
 */
 .marco-embed--form iframe {
   height: 1533px !important;
   min-height: 1533px !important;
 }
 
+/*
+  Calendario de GoHighLevel: altura fija (sin el script de GHL,
+  que rompía el formulario de Airtable). Si faltara lugar,
+  el iframe tiene scroll habilitado.
+*/
 .marco-embed--agenda iframe {
-  height: 760px !important;
-  min-height: 760px !important;
+  height: 900px !important;
+  min-height: 900px !important;
 }
 
 @media (max-width: 620px) {
@@ -357,11 +362,83 @@
     min-height: 1700px !important;
   }
 
+  /* En celular el calendario y los horarios se apilan: necesita más alto */
   .marco-embed--agenda iframe {
-    height: 820px !important;
-    min-height: 820px !important;
+    height: 1500px !important;
+    min-height: 1500px !important;
   }
 }
+
+/* ── calendario bloqueado hasta enviar el formulario ─────────
+   El Paso 02 arranca con este aviso. Cuando la página de
+   /onboarding-listo avisa que el formulario se envió, el aviso
+   se oculta y aparece el calendario.
+   ─────────────────────────────────────────────────────────── */
+
+[hidden] { display: none !important; }
+
+.agenda-bloqueada {
+  margin-top: 26px;
+  border: 1px dashed rgba(223,220,215,.24);
+  border-radius: 24px;
+  background: rgba(20,19,15,.35);
+  padding: clamp(34px, 5vw, 60px) clamp(20px, 4vw, 40px);
+  text-align: center;
+}
+
+.agenda-candado {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border-radius: 99px;
+  background: rgba(114,118,93,.14);
+  border: 1px solid rgba(114,118,93,.3);
+  color: var(--oliva-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agenda-bloqueada-titulo {
+  font-size: clamp(19px, 2vw, 22px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--hueso);
+  margin: 0 0 8px;
+}
+
+.agenda-bloqueada-texto {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--texto-2);
+  max-width: 46ch;
+  margin: 0 auto;
+}
+
+.agenda-bloqueada .acciones {
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.agenda-listo {
+  margin: 24px 0 0;
+  border-left: 2px solid var(--oliva);
+  padding: 4px 0 4px 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--oliva-pale);
+  font-weight: 600;
+}
+
+.salto-estado {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texto-3);
+}
+
+.salto-estado.is-ok { color: var(--oliva-pale); }
 
 /* ── páginas legales ────────────────────────────────────────── */
 

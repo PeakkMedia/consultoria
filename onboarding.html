@@ -88,6 +88,7 @@
         <a class="salto" href="#paso-1">
           <b>Paso 01</b>
           <span>Completá el formulario de incorporación</span>
+          <small class="salto-estado" id="salto-estado-form">Pendiente</small>
         </a>
         <a class="salto" href="#paso-2">
           <b>Paso 02</b>
@@ -99,7 +100,7 @@
 <!-- ─── PASO 1 · FORMULARIO ─── -->
 <article class="paso" id="paso-1">
 
-  <div class="paso-num">Paso 01 · Formulario</div>
+  <div class="paso-num" id="form-num">Paso 01 · Formulario</div>
 
   <h2>Completá el formulario de incorporación</h2>
 
@@ -108,12 +109,25 @@
     de sentarnos con vos y nos ayuda a personalizar todavía más tu plan.
   </p>
 
-  <p class="paso-aviso">
+  <p class="paso-aviso" id="form-aviso">
     <b>Importante:</b> el calendario para agendar la llamada de onboarding
     se habilita recién cuando envíes este formulario.
   </p>
 
-  <div class="marco-embed marco-embed--form">
+  <!-- Se muestra en lugar del formulario una vez enviado -->
+  <div class="paso-hecho" id="form-hecho" hidden>
+    <div class="paso-hecho-check" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.5l4.5 4.5L19 7.5"></path>
+      </svg>
+    </div>
+    <div>
+      <p class="paso-hecho-titulo">Formulario enviado</p>
+      <p class="paso-hecho-texto">Ya recibimos tu información. Si necesitás corregir algo, <a href="#ayuda">escribinos</a>.</p>
+    </div>
+  </div>
+
+  <div class="marco-embed marco-embed--form" id="form">
 
     <!--
       En Airtable, el formulario tiene que redirigir al enviarse a:
@@ -266,7 +280,28 @@
       var agenda  = document.getElementById('agenda');
       var iframe  = agenda.querySelector('iframe');
       var estado  = document.getElementById('salto-estado');
+
+      var form        = document.getElementById('form');
+      var formHecho   = document.getElementById('form-hecho');
+      var formAviso   = document.getElementById('form-aviso');
+      var formNum     = document.getElementById('form-num');
+      var estadoForm  = document.getElementById('salto-estado-form');
+      var pasoForm    = document.getElementById('paso-1');
+
       var abierto = false;
+
+      // Paso 01 como realizado: saca el formulario y muestra el check
+      function marcarFormHecho() {
+        var iframeForm = form.querySelector('iframe');
+        if (iframeForm) iframeForm.setAttribute('src', 'about:blank');
+        form.hidden = true;
+        formAviso.hidden = true;
+        formHecho.hidden = false;
+        formNum.textContent = 'Paso 01 · Completado';
+        pasoForm.classList.add('paso--hecho');
+        estadoForm.textContent = 'Completado';
+        estadoForm.classList.add('is-ok');
+      }
 
       function yaEnviado() {
         try { return localStorage.getItem(CLAVE) === '1'; } catch (e) { return false; }
@@ -280,6 +315,7 @@
         if (abierto) return;
         abierto = true;
         guardar();
+        marcarFormHecho();
 
         if (!iframe.getAttribute('src')) {
           iframe.setAttribute('src', iframe.getAttribute('data-src'));

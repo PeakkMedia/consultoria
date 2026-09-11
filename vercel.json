@@ -38,6 +38,10 @@
       "source": "/confirma-tu-llamada-video",
       "destination": "/confirma-tu-llamada-video.html"
     }
+    {
+      "source": "/onboarding-2",
+      "destination": "/onboarding-listo.html"
+    }
   ],
   "headers": [
     {

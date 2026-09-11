@@ -37,7 +37,7 @@
     {
       "source": "/confirma-tu-llamada-video",
       "destination": "/confirma-tu-llamada-video.html"
-    }
+    },
     {
       "source": "/onboarding-calendario",
       "destination": "/onboarding-listo.html"

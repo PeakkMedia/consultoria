@@ -440,6 +440,61 @@
 
 .salto-estado.is-ok { color: var(--oliva-pale); }
 
+/* Paso 01 ya realizado */
+
+.paso--hecho { border-color: rgba(114,118,93,.45); }
+
+.paso-hecho {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 26px;
+  border: 1px solid rgba(114,118,93,.35);
+  border-radius: 20px;
+  background: rgba(114,118,93,.1);
+  padding: 22px 24px;
+}
+
+.paso-hecho-check {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 99px;
+  background: var(--oliva);
+  color: var(--hueso);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paso-hecho-titulo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--hueso);
+  margin: 0 0 4px;
+}
+
+.paso-hecho-texto {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--texto-2);
+  margin: 0;
+}
+
+.paso-hecho-texto a {
+  color: var(--oliva-claro);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 620px) {
+  .paso-hecho {
+    padding: 18px;
+    gap: 14px;
+  }
+}
+
 /* ── páginas legales ────────────────────────────────────────── */
 
 .sec--legal {

@@ -92,6 +92,7 @@
         <a class="salto" href="#paso-2">
           <b>Paso 02</b>
           <span>Agendá tu llamada de onboarding</span>
+          <small class="salto-estado" id="salto-estado">Se habilita al enviar el formulario</small>
         </a>
       </div>
 
@@ -108,12 +109,17 @@
   </p>
 
   <p class="paso-aviso">
-    <b>Importante:</b> completalo antes de la llamada de onboarding
-    para sacarle el máximo provecho a la sesión.
+    <b>Importante:</b> el calendario para agendar la llamada de onboarding
+    se habilita recién cuando envíes este formulario.
   </p>
 
   <div class="marco-embed marco-embed--form">
 
+    <!--
+      En Airtable, el formulario tiene que redirigir al enviarse a:
+      https://peakkmedia.com/onboarding-listo
+      Esa página es la que avisa acá que el formulario se envió.
+    -->
     <iframe
       class="airtable-embed"
       src="https://airtable.com/embed/appbSrpvp9yd8CAEj/pag3UtWhDs7IfHghf/form"
@@ -147,21 +153,35 @@
     para alcanzar los objetivos de tu marca.
   </p>
 
-  <div class="marco-embed marco-embed--agenda">
+  <!-- Aviso de bloqueo: se ve hasta que se envía el formulario -->
+  <div class="agenda-bloqueada" id="agenda-bloqueada">
+    <div class="agenda-candado" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+      </svg>
+    </div>
+    <p class="agenda-bloqueada-titulo">Primero completá el formulario</p>
+    <p class="agenda-bloqueada-texto">El calendario se habilita automáticamente cuando envíes el formulario del Paso 01.</p>
+    <div class="acciones">
+      <a class="btn" href="#paso-1">Ir al formulario</a>
+    </div>
+  </div>
 
-    <!--
-      Sin el script form_embed.js de GHL: ese script también
-      achicaba el iframe de Airtable. La altura la maneja el CSS
-      (.marco-embed--agenda) y el scroll queda habilitado por las dudas.
-    -->
+  <!-- Mensaje que aparece al habilitarse -->
+  <p class="agenda-listo" id="agenda-listo" hidden>
+    ¡Recibimos tu formulario! Ya podés elegir el horario de tu llamada.
+  </p>
+
+  <!-- Calendario: oculto y sin cargar hasta que se envía el formulario -->
+  <div class="marco-embed marco-embed--agenda" id="agenda" hidden>
     <iframe
-      src="https://api.leadconnectorhq.com/widget/booking/lRLzjF4SyL8tw3bTACnv"
+      data-src="https://api.leadconnectorhq.com/widget/booking/lRLzjF4SyL8tw3bTACnv"
       id="lRLzjF4SyL8tw3bTACnv_onboarding"
       title="Agendá tu llamada de onboarding"
       scrolling="yes"
       style="width:100%;border:0;display:block;">
     </iframe>
-
   </div>
 
 </article>
@@ -170,7 +190,7 @@
       <article class="paso" id="ayuda">
         <div class="paso-num">¿Trabaste?</div>
         <h2>Si algo no te funciona, escribinos</h2>
-        <p class="bajada">Si el formulario no carga, no encontrás un horario que te sirva o tenés cualquier duda, mandanos un mensaje y lo resolvemos.</p>
+        <p class="bajada">Si el formulario no carga, ya lo enviaste y el calendario no se habilita, no encontrás un horario que te sirva o tenés cualquier duda, mandanos un mensaje y lo resolvemos.</p>
         <div class="acciones">
           <a class="btn" href="https://wa.me/5491161354143?text=Hola!%20Estoy%20haciendo%20el%20onboarding%20y%20necesito%20una%20mano." target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp</a>
           <a class="btn btn--fantasma" href="mailto:peakkmediagroup@gmail.com">Mandanos un mail</a>
@@ -226,6 +246,78 @@
       </div>
     </div>
   </footer>
+
+  <!--
+    Desbloqueo del calendario.
+    Cuando Airtable redirige a /onboarding-listo, esa página:
+      · guarda una marca en el navegador (localStorage), y
+      · si está adentro del iframe, le avisa a esta página.
+    Esta página escucha ese aviso y habilita el calendario.
+    Si la persona vuelve otro día desde el mismo navegador,
+    el calendario ya aparece habilitado.
+  -->
+  <script>
+    (function () {
+      var CLAVE = 'peakk_onboarding_form_ok';
+      var MENSAJE = 'peakk-onboarding-form-enviado';
+
+      var bloqueo = document.getElementById('agenda-bloqueada');
+      var listo   = document.getElementById('agenda-listo');
+      var agenda  = document.getElementById('agenda');
+      var iframe  = agenda.querySelector('iframe');
+      var estado  = document.getElementById('salto-estado');
+      var abierto = false;
+
+      function yaEnviado() {
+        try { return localStorage.getItem(CLAVE) === '1'; } catch (e) { return false; }
+      }
+
+      function guardar() {
+        try { localStorage.setItem(CLAVE, '1'); } catch (e) {}
+      }
+
+      function habilitar(recienEnviado) {
+        if (abierto) return;
+        abierto = true;
+        guardar();
+
+        if (!iframe.getAttribute('src')) {
+          iframe.setAttribute('src', iframe.getAttribute('data-src'));
+        }
+
+        bloqueo.hidden = true;
+        agenda.hidden = false;
+        listo.hidden = !recienEnviado;
+
+        estado.textContent = 'Habilitado';
+        estado.classList.add('is-ok');
+
+        if (recienEnviado || location.hash === '#paso-2') {
+          setTimeout(function () {
+            document.getElementById('paso-2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 400);
+        }
+
+        // Evento para GTM, por si querés medirlo
+        window.dataLayer = window.dataLayer || [];
+        if (recienEnviado) window.dataLayer.push({ event: 'onboarding_form_enviado' });
+      }
+
+      // 1) Ya lo había enviado antes en este navegador
+      if (yaEnviado()) habilitar(false);
+
+      // 2) La página /onboarding-listo cargó dentro del iframe de Airtable
+      window.addEventListener('message', function (e) {
+        if (e.origin !== window.location.origin) return;
+        if (e.data && e.data.tipo === MENSAJE) habilitar(true);
+      });
+
+      // 3) Airtable abrió /onboarding-listo en otra pestaña
+      window.addEventListener('storage', function (e) {
+        if (e.key === CLAVE && e.newValue === '1') habilitar(true);
+      });
+    })();
+  </script>
 
   <script src="comun.js" defer></script>
 </body>

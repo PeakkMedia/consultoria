@@ -376,16 +376,16 @@
 [hidden] { display: none !important; }
 
 .marco-form {
-  margin-top: 26px;
+  margin-top: 24px;
   border: 1px solid var(--linea);
   border-radius: 24px;
   background: var(--tinta);
-  padding: clamp(22px, 3vw, 40px);
+  padding: clamp(20px, 2.4vw, 32px);
+  max-width: 760px;
 }
 
 .form-cabecera {
-  padding-bottom: 24px;
-  margin-bottom: 8px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--linea);
 }
 
@@ -415,44 +415,42 @@
 .form-grupo {
   border: 0;
   margin: 0;
-  padding: 34px 0 0;
+  padding: 26px 0 0;
 }
 
 .form-grupo-titulo {
   display: block;
-  font-size: 12px;
+  font-size: 11.5px;
   letter-spacing: .2em;
   text-transform: uppercase;
   font-weight: 800;
   color: var(--oliva-pale);
-  padding: 0 0 18px;
+  padding: 0 0 14px;
 }
 
+/* Una sola columna: las preguntas van una debajo de la otra */
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
+  gap: 18px;
 }
-
-.form-campo--ancho { grid-column: 1 / -1; }
 
 /* etiquetas y ayudas */
 
 .form-label {
   display: block;
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.4;
   letter-spacing: -.01em;
   color: var(--hueso);
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .form-ayuda {
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.45;
   color: var(--texto-3);
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 
 /* controles */
@@ -460,21 +458,26 @@
 .form-control {
   width: 100%;
   font-family: inherit;
-  font-size: 15.5px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--hueso);
   background: var(--tinta-2);
   border: 1px solid var(--linea);
-  border-radius: 14px;
-  padding: 13px 15px;
+  border-radius: 12px;
+  padding: 10px 13px;
   transition: border-color .18s, background .18s;
   -webkit-appearance: none;
   appearance: none;
 }
 
+/*
+  Los textareas arrancan chicos y crecen solos a medida que
+  se escribe (lo maneja el script de la página).
+*/
 textarea.form-control {
   resize: vertical;
-  min-height: 88px;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .form-control::placeholder { color: var(--texto-3); }
@@ -494,12 +497,12 @@ input[type="date"].form-control { color-scheme: dark; }
 .form-control--prefijo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 15px;
+  gap: 7px;
+  padding: 0 13px;
 }
 
 .form-prefijo {
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--oliva-pale);
   flex: 0 0 auto;
@@ -509,11 +512,11 @@ input[type="date"].form-control { color-scheme: dark; }
   flex: 1 1 auto;
   min-width: 0;
   font-family: inherit;
-  font-size: 15.5px;
+  font-size: 15px;
   color: var(--hueso);
   background: none;
   border: 0;
-  padding: 13px 0;
+  padding: 10px 0;
 }
 
 .form-control--prefijo input:focus { outline: 0; }
@@ -532,10 +535,10 @@ input[type="date"].form-control { color-scheme: dark; }
   align-items: center;
   gap: 9px;
   border: 1px solid var(--linea);
-  border-radius: 14px;
+  border-radius: 12px;
   background: var(--tinta-2);
-  padding: 12px 20px;
-  font-size: 15.5px;
+  padding: 9px 18px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--texto-2);
   cursor: pointer;
@@ -575,7 +578,7 @@ input[type="date"].form-control { color-scheme: dark; }
 }
 
 .form-error {
-  margin: 26px 0 0;
+  margin: 22px 0 0;
   border: 1px solid rgba(196,92,62,.45);
   border-radius: 14px;
   background: rgba(196,92,62,.1);
@@ -588,12 +591,12 @@ input[type="date"].form-control { color-scheme: dark; }
 /* pie del formulario */
 
 .form-pie {
-  margin-top: 34px;
-  padding-top: 26px;
+  margin-top: 28px;
+  padding-top: 22px;
   border-top: 1px solid var(--linea);
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -613,18 +616,14 @@ input[type="date"].form-control { color-scheme: dark; }
   margin: 0;
 }
 
-@media (max-width: 760px) {
-  .form-grid { grid-template-columns: 1fr; }
-}
-
 @media (max-width: 620px) {
   .marco-form {
-    padding: 20px 18px;
+    padding: 18px 16px;
     border-radius: 20px;
   }
 
-  .form-grupo { padding-top: 28px; }
-  .form-grid { gap: 20px; }
+  .form-grupo { padding-top: 24px; }
+  .form-grid { gap: 16px; }
 
   .form-pie {
     flex-direction: column;

@@ -85,22 +85,22 @@
     <div class="wrap wrap--angosto">
 
       <div class="saltos">
-        <a class="salto" href="#paso-1">
+        <a class="salto salto--activo" href="#paso-1">
           <b>Paso 01</b>
           <span>Completá el formulario de incorporación</span>
-          <small class="salto-estado" id="salto-estado-form">Pendiente</small>
+          <small class="salto-estado" id="estado-1">Estás acá</small>
         </a>
-        <a class="salto" href="#paso-2">
+        <div class="salto salto--bloqueado" id="salto-2">
           <b>Paso 02</b>
           <span>Agendá tu llamada de onboarding</span>
-          <small class="salto-estado" id="salto-estado">Se habilita al enviar el formulario</small>
-        </a>
+          <small class="salto-estado" id="estado-2">Se habilita una vez completado el formulario</small>
+        </div>
       </div>
 
 <!-- ─── PASO 1 · FORMULARIO ─── -->
 <article class="paso" id="paso-1">
 
-  <div class="paso-num" id="form-num">Paso 01 · Formulario</div>
+  <div class="paso-num" id="paso-1-num">Paso 01 · Formulario</div>
 
   <h2>Completá el formulario de incorporación</h2>
 
@@ -109,12 +109,256 @@
     de sentarnos con vos y nos ayuda a personalizar todavía más tu plan.
   </p>
 
-  <p class="paso-aviso" id="form-aviso">
-    <b>Importante:</b> el calendario para agendar la llamada de onboarding
-    se habilita recién cuando envíes este formulario.
+  <p class="paso-aviso" id="paso-1-aviso">
+    <b>Importante:</b> cuando lo envíes se habilita el calendario
+    del Paso 02 para que agendes tu llamada de onboarding.
   </p>
 
-  <!-- Se muestra en lugar del formulario una vez enviado -->
+  <!-- Formulario propio (reemplaza al embed de Airtable) -->
+  <div class="marco-form" id="marco-form">
+
+      <form class="form" id="form-onboarding" novalidate>
+
+        <div class="form-cabecera">
+          <p class="form-titulo">Onboarding Peakk Media</p>
+          <p class="form-texto">Respondé las preguntas de abajo para que podamos preparar tu plan de acción. Los campos con <span class="form-req">*</span> son obligatorios.</p>
+        </div>
+
+  <fieldset class="form-grupo">
+    <legend class="form-grupo-titulo">Tus datos</legend>
+    <div class="form-grid">
+    <div class="form-campo">
+      <label class="form-label" for="nombre_apellido">Nombre y apellido <span class="form-req" aria-hidden="true">*</span></label>
+      <input class="form-control" type="text" id="nombre_apellido" name="nombre_apellido" placeholder="Como figura en tu documento" required>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="email">Email <span class="form-req" aria-hidden="true">*</span></label>
+      <input class="form-control" type="email" id="email" name="email" placeholder="vos@tumarca.com" required>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="telefono">Teléfono <span class="form-req" aria-hidden="true">*</span></label>
+      <input class="form-control" type="tel" id="telefono" name="telefono" placeholder="+54 9 11 1234-5678" required>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="fecha_nacimiento">Fecha de nacimiento <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Formato: dd/mm/aaaa</p>
+      <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="" required>
+    </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-grupo">
+    <legend class="form-grupo-titulo">Tu marca</legend>
+    <div class="form-grid">
+    <div class="form-campo">
+      <label class="form-label" for="nombre_marca">Nombre de tu marca <span class="form-req" aria-hidden="true">*</span></label>
+      <input class="form-control" type="text" id="nombre_marca" name="nombre_marca" placeholder="" required>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="instagram">Usuario de Instagram <span class="form-req" aria-hidden="true">*</span></label>
+      <div class="form-control form-control--prefijo">
+        <span class="form-prefijo">@</span>
+        <input type="text" id="instagram" name="instagram" placeholder="tumarca" required>
+      </div>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="sitio_web">Sitio web <span class="form-req" aria-hidden="true">*</span></label>
+      <input class="form-control" type="text" id="sitio_web" name="sitio_web" placeholder="https://tumarca.com" required>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="donde_opera">Dónde opera tu empresa <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Local, showroom, casa, etc.</p>
+      <input class="form-control" type="text" id="donde_opera" name="donde_opera" placeholder="" required>
+    </div>
+
+    <div class="form-campo form-campo--ancho">
+      <label class="form-label" for="empleados">¿Tenés empleados? <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Sí / No. ¿Cuántos y cuáles son sus responsabilidades?</p>
+      <textarea class="form-control" id="empleados" name="empleados" rows="3" placeholder="" required></textarea>
+    </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-grupo">
+    <legend class="form-grupo-titulo">Números de tu negocio</legend>
+    <div class="form-grid">
+    <div class="form-campo">
+      <label class="form-label" for="facturacion_promedio">Facturación promedio <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Últimos 12 meses, en USD</p>
+      <div class="form-control form-control--prefijo">
+        <span class="form-prefijo">$</span>
+        <input type="text" inputmode="decimal" id="facturacion_promedio" name="facturacion_promedio" placeholder="" required>
+      </div>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="ticket_promedio">Ticket promedio <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">En tu moneda local</p>
+      <div class="form-control form-control--prefijo">
+        <span class="form-prefijo">$</span>
+        <input type="text" inputmode="decimal" id="ticket_promedio" name="ticket_promedio" placeholder="" required>
+      </div>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="facturacion_deseada">Facturación mensual deseada <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Al terminar el programa, en tu moneda local</p>
+      <div class="form-control form-control--prefijo">
+        <span class="form-prefijo">$</span>
+        <input type="text" inputmode="decimal" id="facturacion_deseada" name="facturacion_deseada" placeholder="" required>
+      </div>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="dedicacion">¿Te dedicás solo a tu marca? <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Sí / No. En caso de que no, ¿qué otra cosa hacés?</p>
+      <textarea class="form-control" id="dedicacion" name="dedicacion" rows="3" placeholder="" required></textarea>
+    </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-grupo">
+    <legend class="form-grupo-titulo">Marketing</legend>
+    <div class="form-grid">
+    <div class="form-campo">
+      <label class="form-label" for="meta_ads">¿Hacés publicidad actualmente en Meta Ads? <span class="form-req" aria-hidden="true">*</span></label>
+      <div class="form-opciones" role="radiogroup" aria-label="¿Hacés publicidad actualmente en Meta Ads?">
+        <label class="form-opcion" for="meta_ads_0">
+          <input type="radio" id="meta_ads_0" name="meta_ads" value="Sí" required>
+          <span>Sí</span>
+        </label>
+        <label class="form-opcion" for="meta_ads_1">
+          <input type="radio" id="meta_ads_1" name="meta_ads" value="No" required>
+          <span>No</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="inversion_meta_ads">Inversión promedio mensual en Meta Ads <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Netos, sin impuestos</p>
+      <div class="form-control form-control--prefijo">
+        <span class="form-prefijo">$</span>
+        <input type="text" inputmode="decimal" id="inversion_meta_ads" name="inversion_meta_ads" placeholder="" required>
+      </div>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="automatizaciones_email">¿Hacés automatizaciones de email marketing? <span class="form-req" aria-hidden="true">*</span></label>
+      <div class="form-opciones" role="radiogroup" aria-label="¿Hacés automatizaciones de email marketing?">
+        <label class="form-opcion" for="automatizaciones_email_0">
+          <input type="radio" id="automatizaciones_email_0" name="automatizaciones_email" value="Sí" required>
+          <span>Sí</span>
+        </label>
+        <label class="form-opcion" for="automatizaciones_email_1">
+          <input type="radio" id="automatizaciones_email_1" name="automatizaciones_email" value="No" required>
+          <span>No</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="newsletter">¿Tenés y usás un newsletter de email marketing? <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Si es así, ¿qué frecuencia de envíos tiene?</p>
+      <textarea class="form-control" id="newsletter" name="newsletter" rows="3" placeholder="" required></textarea>
+    </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-grupo">
+    <legend class="form-grupo-titulo">Dónde estás y a dónde vas</legend>
+    <div class="form-grid">
+    <div class="form-campo form-campo--ancho">
+      <label class="form-label" for="desafios">Describí los principales desafíos que enfrentás para crecer <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">¿Qué problemas tenés? ¿Qué te da miedo o te frustra?</p>
+      <textarea class="form-control" id="desafios" name="desafios" rows="5" placeholder="" required></textarea>
+    </div>
+
+    <div class="form-campo form-campo--ancho">
+      <label class="form-label" for="diferencias">Si comparás tu yo actual con el yo que querés ser después del programa, ¿qué diferencias te gustaría notar? <span class="form-req" aria-hidden="true">*</span></label>
+      <textarea class="form-control" id="diferencias" name="diferencias" rows="5" placeholder="" required></textarea>
+    </div>
+
+    <div class="form-campo form-campo--ancho">
+      <label class="form-label" for="vision">¿Dónde te ves con tu marca en los próximos 5 a 10 años? <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">¿Cuál es tu aspiración máxima?</p>
+      <textarea class="form-control" id="vision" name="vision" rows="5" placeholder="" required></textarea>
+    </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-grupo">
+    <legend class="form-grupo-titulo">Tu experiencia hasta acá</legend>
+    <div class="form-grid">
+    <div class="form-campo form-campo--ancho">
+      <label class="form-label" for="inversiones_previas">¿Invertiste en otros cursos, programas o mentorías? <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Si es así, ¿en cuáles y qué experiencia tuviste?</p>
+      <textarea class="form-control" id="inversiones_previas" name="inversiones_previas" rows="4" placeholder="" required></textarea>
+    </div>
+
+    <div class="form-campo form-campo--ancho">
+      <label class="form-label" for="agencia_anterior">¿Qué no te gustaba de la agencia o persona anterior que gestionaba tu marca? <span class="form-req" aria-hidden="true">*</span></label>
+      <textarea class="form-control" id="agencia_anterior" name="agencia_anterior" rows="4" placeholder="" required></textarea>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="no_funciono">¿Qué intentaste hasta ahora para vender más que NO te funcionó? <span class="form-req" aria-hidden="true">*</span></label>
+      <textarea class="form-control" id="no_funciono" name="no_funciono" rows="4" placeholder="" required></textarea>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="si_funciono">¿Qué intentaste hasta ahora para vender más que SÍ te funcionó? <span class="form-req" aria-hidden="true">*</span></label>
+      <textarea class="form-control" id="si_funciono" name="si_funciono" rows="4" placeholder="" required></textarea>
+    </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-grupo">
+    <legend class="form-grupo-titulo">Referencias y estrategia</legend>
+    <div class="form-grid">
+    <div class="form-campo">
+      <label class="form-label" for="competencia_nacional">5 empresas o marcas que sean competencia directa a nivel nacional, o que te inspiren <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Una por línea</p>
+      <textarea class="form-control" id="competencia_nacional" name="competencia_nacional" rows="5" placeholder="" required></textarea>
+    </div>
+
+    <div class="form-campo">
+      <label class="form-label" for="inspiracion_internacional">5 empresas o marcas que te inspiren a nivel internacional <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Una por línea</p>
+      <textarea class="form-control" id="inspiracion_internacional" name="inspiracion_internacional" rows="5" placeholder="" required></textarea>
+    </div>
+
+    <div class="form-campo form-campo--ancho">
+      <label class="form-label" for="alianzas">¿Hiciste alianzas estratégicas con otras marcas o influencers? <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Si es así, describilas brevemente junto con los resultados que obtuviste.</p>
+      <textarea class="form-control" id="alianzas" name="alianzas" rows="4" placeholder="" required></textarea>
+    </div>
+
+    <div class="form-campo form-campo--ancho">
+      <label class="form-label" for="black_friday">¿Hiciste alguna vez un Cyber Monday o Black Friday con una estrategia completa? <span class="form-req" aria-hidden="true">*</span></label>
+      <p class="form-ayuda">Si es así, contanos en detalle qué se hizo. Contanos también qué tenés pensado hacer este año.</p>
+      <textarea class="form-control" id="black_friday" name="black_friday" rows="5" placeholder="" required></textarea>
+    </div>
+    </div>
+  </fieldset>
+
+        <p class="form-error" id="form-error" hidden></p>
+
+        <div class="form-pie">
+          <button class="btn form-enviar" type="submit" id="form-enviar">Enviar formulario</button>
+          <p class="form-nota">Al enviarlo se habilita el calendario del Paso 02.</p>
+        </div>
+
+      </form>
+  </div>
+
+  <!-- Confirmación: reemplaza al formulario una vez enviado -->
   <div class="paso-hecho" id="form-hecho" hidden>
     <div class="paso-hecho-check" aria-hidden="true">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -125,32 +369,6 @@
       <p class="paso-hecho-titulo">Formulario enviado</p>
       <p class="paso-hecho-texto">Ya recibimos tu información. Si necesitás corregir algo, <a href="#ayuda">escribinos</a>.</p>
     </div>
-  </div>
-
-  <div class="marco-embed marco-embed--form" id="form">
-
-    <!--
-      En Airtable, el formulario tiene que redirigir al enviarse a:
-      https://peakkmedia.com/onboarding-listo
-      Esa página es la que avisa acá que el formulario se envió.
-    -->
-    <iframe
-      class="airtable-embed"
-      src="https://airtable.com/embed/appbSrpvp9yd8CAEj/pag3UtWhDs7IfHghf/form"
-      title="Formulario de incorporación"
-      frameborder="0"
-      scrolling="yes"
-      width="100%"
-      style="
-        width:100%;
-        height:1533px !important;
-        min-height:1533px !important;
-        border:0;
-        display:block;
-        background:#fff;
-      ">
-    </iframe>
-
   </div>
 
 </article>
@@ -167,7 +385,7 @@
     para alcanzar los objetivos de tu marca.
   </p>
 
-  <!-- Aviso de bloqueo: se ve hasta que se envía el formulario -->
+  <!-- Candado: se ve hasta que se envía el formulario -->
   <div class="agenda-bloqueada" id="agenda-bloqueada">
     <div class="agenda-candado" aria-hidden="true">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -175,19 +393,14 @@
         <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
       </svg>
     </div>
-    <p class="agenda-bloqueada-titulo">Primero completá el formulario</p>
-    <p class="agenda-bloqueada-texto">El calendario se habilita automáticamente cuando envíes el formulario del Paso 01.</p>
+    <p class="agenda-bloqueada-titulo">Calendario bloqueado</p>
+    <p class="agenda-bloqueada-texto">Se habilita apenas envíes el formulario del Paso 01.</p>
     <div class="acciones">
       <a class="btn" href="#paso-1">Ir al formulario</a>
     </div>
   </div>
 
-  <!-- Mensaje que aparece al habilitarse -->
-  <p class="agenda-listo" id="agenda-listo" hidden>
-    ¡Recibimos tu formulario! Ya podés elegir el horario de tu llamada.
-  </p>
-
-  <!-- Calendario: oculto y sin cargar hasta que se envía el formulario -->
+  <!-- Calendario: sin cargar hasta que se envía el formulario -->
   <div class="marco-embed marco-embed--agenda" id="agenda" hidden>
     <iframe
       data-src="https://api.leadconnectorhq.com/widget/booking/lRLzjF4SyL8tw3bTACnv"
@@ -204,7 +417,7 @@
       <article class="paso" id="ayuda">
         <div class="paso-num">¿Trabaste?</div>
         <h2>Si algo no te funciona, escribinos</h2>
-        <p class="bajada">Si el formulario no carga, ya lo enviaste y el calendario no se habilita, no encontrás un horario que te sirva o tenés cualquier duda, mandanos un mensaje y lo resolvemos.</p>
+        <p class="bajada">Si el formulario no carga, ya lo enviaste y no pasaste al Paso 02 o tenés cualquier duda, mandanos un mensaje y lo resolvemos.</p>
         <div class="acciones">
           <a class="btn" href="https://wa.me/5491161354143?text=Hola!%20Estoy%20haciendo%20el%20onboarding%20y%20necesito%20una%20mano." target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp</a>
           <a class="btn btn--fantasma" href="mailto:peakkmediagroup@gmail.com">Mandanos un mail</a>
@@ -262,60 +475,42 @@
   </footer>
 
   <!--
-    Desbloqueo del calendario.
-    Cuando Airtable redirige a /onboarding-listo, esa página:
-      · guarda una marca en el navegador (localStorage), y
-      · si está adentro del iframe, le avisa a esta página.
-    Esta página escucha ese aviso y habilita el calendario.
-    Si la persona vuelve otro día desde el mismo navegador,
-    el calendario ya aparece habilitado.
+    Envío del formulario:
+      1) manda todas las respuestas al webhook de Zapier
+      2) marca el Paso 01 como completado
+      3) le saca el candado al calendario del Paso 02
+    Si la persona vuelve desde el mismo navegador, el calendario
+    sigue habilitado (queda guardado en localStorage).
   -->
   <script>
     (function () {
-      var CLAVE = 'peakk_onboarding_form_ok';
-      var MENSAJE = 'peakk-onboarding-form-enviado';
+      var WEBHOOK = 'https://hooks.zapier.com/hooks/catch/25626237/4d60es7/';
+      var CLAVE   = 'peakk_onboarding_form_ok';
 
-      var bloqueo = document.getElementById('agenda-bloqueada');
-      var listo   = document.getElementById('agenda-listo');
-      var agenda  = document.getElementById('agenda');
-      var iframe  = agenda.querySelector('iframe');
-      var estado  = document.getElementById('salto-estado');
+      var form     = document.getElementById('form-onboarding');
+      var boton    = document.getElementById('form-enviar');
+      var error    = document.getElementById('form-error');
+      var marco    = document.getElementById('marco-form');
+      var hecho    = document.getElementById('form-hecho');
+      var aviso    = document.getElementById('paso-1-aviso');
+      var num1     = document.getElementById('paso-1-num');
+      var estado1  = document.getElementById('estado-1');
+      var salto2   = document.getElementById('salto-2');
+      var estado2  = document.getElementById('estado-2');
+      var bloqueo  = document.getElementById('agenda-bloqueada');
+      var agenda   = document.getElementById('agenda');
+      var iframe   = agenda.querySelector('iframe');
+      var abierto  = false;
 
-      var form        = document.getElementById('form');
-      var formHecho   = document.getElementById('form-hecho');
-      var formAviso   = document.getElementById('form-aviso');
-      var formNum     = document.getElementById('form-num');
-      var estadoForm  = document.getElementById('salto-estado-form');
-      var pasoForm    = document.getElementById('paso-1');
+      var CHECK = '<span class="salto-check" aria-hidden="true">' +
+        '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>';
 
-      var abierto = false;
-
-      // Paso 01 como realizado: saca el formulario y muestra el check
-      function marcarFormHecho() {
-        var iframeForm = form.querySelector('iframe');
-        if (iframeForm) iframeForm.setAttribute('src', 'about:blank');
-        form.hidden = true;
-        formAviso.hidden = true;
-        formHecho.hidden = false;
-        formNum.textContent = 'Paso 01 · Completado';
-        pasoForm.classList.add('paso--hecho');
-        estadoForm.textContent = 'Completado';
-        estadoForm.classList.add('is-ok');
-      }
-
-      function yaEnviado() {
-        try { return localStorage.getItem(CLAVE) === '1'; } catch (e) { return false; }
-      }
-
-      function guardar() {
-        try { localStorage.setItem(CLAVE, '1'); } catch (e) {}
-      }
-
-      function habilitar(recienEnviado) {
+      /* ── habilitar el calendario ── */
+      function abrirCalendario(recienEnviado) {
         if (abierto) return;
         abierto = true;
-        guardar();
-        marcarFormHecho();
 
         if (!iframe.getAttribute('src')) {
           iframe.setAttribute('src', iframe.getAttribute('data-src'));
@@ -323,34 +518,110 @@
 
         bloqueo.hidden = true;
         agenda.hidden = false;
-        listo.hidden = !recienEnviado;
 
-        estado.textContent = 'Habilitado';
-        estado.classList.add('is-ok');
+        salto2.className = 'salto salto--activo';
+        estado2.textContent = recienEnviado ? 'Estás acá' : 'Habilitado';
 
-        if (recienEnviado || location.hash === '#paso-2') {
+        marco.hidden = true;
+        aviso.hidden = true;
+        hecho.hidden = false;
+        num1.textContent = 'Paso 01 · Completado';
+        document.getElementById('paso-1').classList.add('paso--hecho');
+        estado1.innerHTML = CHECK + 'Completado';
+        estado1.classList.add('is-ok');
+
+        try { localStorage.setItem(CLAVE, '1'); } catch (e) {}
+
+        if (recienEnviado) {
           setTimeout(function () {
             document.getElementById('paso-2').scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 400);
+          }, 250);
         }
-
-        // Evento para GTM, por si querés medirlo
-        window.dataLayer = window.dataLayer || [];
-        if (recienEnviado) window.dataLayer.push({ event: 'onboarding_form_enviado' });
       }
 
-      // 1) Ya lo había enviado antes en este navegador
-      if (yaEnviado()) habilitar(false);
+      /* ── si ya lo había enviado antes desde este navegador ── */
+      try {
+        if (localStorage.getItem(CLAVE) === '1') abrirCalendario(false);
+      } catch (e) {}
 
-      // 2) La página /onboarding-listo cargó dentro del iframe de Airtable
-      window.addEventListener('message', function (e) {
-        if (e.origin !== window.location.origin) return;
-        if (e.data && e.data.tipo === MENSAJE) habilitar(true);
+      if (!form) return;
+
+      /* ── validación ── */
+      function validar() {
+        var faltan = [];
+        form.querySelectorAll('[required]').forEach(function (c) {
+          var grupo = c.closest('.form-campo');
+          var ok;
+
+          if (c.type === 'radio') {
+            ok = !!form.querySelector('input[name="' + c.name + '"]:checked');
+          } else {
+            ok = c.value.trim() !== '' && c.checkValidity();
+          }
+
+          if (grupo) grupo.classList.toggle('tiene-error', !ok);
+          if (!ok && faltan.indexOf(c.name) === -1) faltan.push(c.name);
+        });
+        return faltan;
+      }
+
+      form.addEventListener('input', function (e) {
+        var grupo = e.target.closest('.form-campo');
+        if (grupo) grupo.classList.remove('tiene-error');
       });
 
-      // 3) Airtable abrió /onboarding-listo en otra pestaña
-      window.addEventListener('storage', function (e) {
-        if (e.key === CLAVE && e.newValue === '1') habilitar(true);
+      /* ── envío ── */
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        error.hidden = true;
+
+        var faltan = validar();
+        if (faltan.length) {
+          error.textContent = faltan.length === 1
+            ? 'Falta completar 1 respuesta. Está marcada en rojo más arriba.'
+            : 'Faltan completar ' + faltan.length + ' respuestas. Están marcadas en rojo más arriba.';
+          error.hidden = false;
+          var primero = form.querySelector('.tiene-error');
+          if (primero) primero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        boton.disabled = true;
+        boton.textContent = 'Enviando…';
+
+        var datos = new FormData(form);
+        datos.append('pagina', 'onboarding');
+        datos.append('enviado_en', new Date().toISOString());
+
+        var cuerpo = new URLSearchParams();
+        datos.forEach(function (v, k) { cuerpo.append(k, v); });
+
+        fetch(WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: cuerpo.toString()
+        })
+        .catch(function () {
+          // Si el navegador bloquea la lectura de la respuesta,
+          // reintentamos a ciegas: el dato igual llega a Zapier.
+          return fetch(WEBHOOK, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+            body: cuerpo.toString()
+          });
+        })
+        .then(function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'onboarding_form_enviado' });
+          abrirCalendario(true);
+        })
+        .catch(function () {
+          boton.disabled = false;
+          boton.textContent = 'Enviar formulario';
+          error.textContent = 'No pudimos enviar el formulario. Revisá tu conexión y probá de nuevo, o escribinos por WhatsApp.';
+          error.hidden = false;
+        });
       });
     })();
   </script>

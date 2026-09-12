@@ -369,13 +369,271 @@
   }
 }
 
-/* ── calendario bloqueado hasta enviar el formulario ─────────
-   El Paso 02 arranca con este aviso. Cuando la página de
-   /onboarding-listo avisa que el formulario se envió, el aviso
-   se oculta y aparece el calendario.
+/* ── formulario propio de onboarding ────────────────────────
+   Reemplaza al embed de Airtable. Usa la paleta del sitio.
    ─────────────────────────────────────────────────────────── */
 
 [hidden] { display: none !important; }
+
+.marco-form {
+  margin-top: 26px;
+  border: 1px solid var(--linea);
+  border-radius: 24px;
+  background: var(--tinta);
+  padding: clamp(22px, 3vw, 40px);
+}
+
+.form-cabecera {
+  padding-bottom: 24px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--linea);
+}
+
+.form-titulo {
+  font-size: clamp(19px, 2.2vw, 23px);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--hueso);
+  margin: 0 0 8px;
+}
+
+.form-texto {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--texto-2);
+  margin: 0;
+  max-width: 62ch;
+}
+
+.form-req {
+  color: var(--tierra-2);
+  font-weight: 700;
+}
+
+/* grupos */
+
+.form-grupo {
+  border: 0;
+  margin: 0;
+  padding: 34px 0 0;
+}
+
+.form-grupo-titulo {
+  display: block;
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--oliva-pale);
+  padding: 0 0 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.form-campo--ancho { grid-column: 1 / -1; }
+
+/* etiquetas y ayudas */
+
+.form-label {
+  display: block;
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -.01em;
+  color: var(--hueso);
+  margin-bottom: 6px;
+}
+
+.form-ayuda {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--texto-3);
+  margin: 0 0 10px;
+}
+
+/* controles */
+
+.form-control {
+  width: 100%;
+  font-family: inherit;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--hueso);
+  background: var(--tinta-2);
+  border: 1px solid var(--linea);
+  border-radius: 14px;
+  padding: 13px 15px;
+  transition: border-color .18s, background .18s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 88px;
+}
+
+.form-control::placeholder { color: var(--texto-3); }
+
+.form-control:focus,
+.form-control:focus-within {
+  outline: 0;
+  border-color: rgba(169,173,144,.55);
+  background: rgba(114,118,93,.08);
+}
+
+/* el ícono del calendario nativo se ve negro sobre fondo oscuro */
+input[type="date"].form-control { color-scheme: dark; }
+
+/* campos con prefijo ($, @) */
+
+.form-control--prefijo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 15px;
+}
+
+.form-prefijo {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--oliva-pale);
+  flex: 0 0 auto;
+}
+
+.form-control--prefijo input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: inherit;
+  font-size: 15.5px;
+  color: var(--hueso);
+  background: none;
+  border: 0;
+  padding: 13px 0;
+}
+
+.form-control--prefijo input:focus { outline: 0; }
+.form-control--prefijo input::placeholder { color: var(--texto-3); }
+
+/* opciones Sí / No */
+
+.form-opciones {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form-opcion {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--linea);
+  border-radius: 14px;
+  background: var(--tinta-2);
+  padding: 12px 20px;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--texto-2);
+  cursor: pointer;
+  transition: border-color .18s, background .18s, color .18s;
+}
+
+.form-opcion:hover { border-color: rgba(169,173,144,.4); }
+
+.form-opcion input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  border: 1px solid rgba(223,220,215,.4);
+  border-radius: 99px;
+  flex: 0 0 auto;
+  transition: border-color .18s, box-shadow .18s;
+}
+
+.form-opcion input:checked {
+  border-color: var(--oliva-pale);
+  box-shadow: inset 0 0 0 4px var(--oliva);
+}
+
+.form-opcion:has(input:checked) {
+  border-color: rgba(169,173,144,.55);
+  background: rgba(114,118,93,.14);
+  color: var(--hueso);
+}
+
+/* error */
+
+.form-campo.tiene-error .form-control,
+.form-campo.tiene-error .form-opcion {
+  border-color: rgba(196,92,62,.75);
+}
+
+.form-error {
+  margin: 26px 0 0;
+  border: 1px solid rgba(196,92,62,.45);
+  border-radius: 14px;
+  background: rgba(196,92,62,.1);
+  padding: 14px 16px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--hueso);
+}
+
+/* pie del formulario */
+
+.form-pie {
+  margin-top: 34px;
+  padding-top: 26px;
+  border-top: 1px solid var(--linea);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.form-enviar {
+  font-size: 16px;
+  padding: 15px 30px;
+}
+
+.form-enviar:disabled {
+  opacity: .6;
+  cursor: default;
+}
+
+.form-nota {
+  font-size: 13.5px;
+  color: var(--texto-3);
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .marco-form {
+    padding: 20px 18px;
+    border-radius: 20px;
+  }
+
+  .form-grupo { padding-top: 28px; }
+  .form-grid { gap: 20px; }
+
+  .form-pie {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+}
+
+/* ── calendario bloqueado ───────────────────────────────────── */
 
 .agenda-bloqueada {
   margin-top: 26px;
@@ -420,35 +678,66 @@
   margin-top: 24px;
 }
 
-.agenda-listo {
-  margin: 24px 0 0;
-  border-left: 2px solid var(--oliva);
-  padding: 4px 0 4px 16px;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--oliva-pale);
-  font-weight: 600;
-}
+/* ── estado de los pasos en las píldoras de arriba ──────────
+   /onboarding        → Paso 01 pendiente, Paso 02 bloqueado
+   /onboarding-listo  → Paso 01 completado, Paso 02 activo
+   ─────────────────────────────────────────────────────────── */
 
 .salto-estado {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 7px;
   margin-top: 8px;
   font-size: 13px;
   font-weight: 500;
   color: var(--texto-3);
 }
 
-.salto-estado.is-ok { color: var(--oliva-pale); }
+/* Paso que todavía no se puede hacer: no es link, se ve apagado */
+.salto--bloqueado {
+  opacity: .55;
+  cursor: default;
+}
 
-/* Paso 01 ya realizado */
+.salto--bloqueado:hover {
+  border-color: var(--linea);
+  transform: none;
+}
 
+/* Paso ya realizado */
+.salto--hecho {
+  border-color: rgba(114,118,93,.45);
+  background: rgba(114,118,93,.1);
+  cursor: default;
+}
+
+.salto--hecho:hover {
+  border-color: rgba(114,118,93,.45);
+  transform: none;
+}
+
+.salto--hecho .salto-estado { color: var(--oliva-pale); }
+
+.salto-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 99px;
+  background: var(--oliva);
+  color: var(--hueso);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+/* Tarjeta del Paso 01 ya enviado (en /onboarding-listo) */
 .paso--hecho { border-color: rgba(114,118,93,.45); }
 
 .paso-hecho {
   display: flex;
   align-items: center;
   gap: 18px;
-  margin-top: 26px;
+  margin-top: 22px;
   border: 1px solid rgba(114,118,93,.35);
   border-radius: 20px;
   background: rgba(114,118,93,.1);
@@ -494,6 +783,13 @@
     gap: 14px;
   }
 }
+
+/* Paso actual */
+.salto--activo {
+  border-color: rgba(169,173,144,.45);
+}
+
+.salto--activo .salto-estado { color: var(--oliva-claro); }
 
 /* ── páginas legales ────────────────────────────────────────── */
 

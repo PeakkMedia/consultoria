@@ -100,19 +100,21 @@
 <!-- ─── PASO 1 · FORMULARIO ─── -->
 <article class="paso" id="paso-1">
 
-  <div class="paso-num" id="paso-1-num">Paso 01 · Formulario</div>
+  <div class="paso-intro" id="paso-1-intro">
+    <div class="paso-num">Paso 01 · Formulario</div>
 
-  <h2>Completá el formulario de incorporación</h2>
+    <h2>Completá el formulario de incorporación</h2>
 
-  <p class="bajada">
-    Este formulario nos da toda la información que necesitamos antes
-    de sentarnos con vos y nos ayuda a personalizar todavía más tu plan.
-  </p>
+    <p class="bajada">
+      Este formulario nos da toda la información que necesitamos antes
+      de sentarnos con vos y nos ayuda a personalizar todavía más tu plan.
+    </p>
 
-  <p class="paso-aviso" id="paso-1-aviso">
-    <b>Importante:</b> cuando lo envíes se habilita el calendario
-    del Paso 02 para que agendes tu llamada de onboarding.
-  </p>
+    <p class="paso-aviso">
+      <b>Importante:</b> cuando lo envíes se habilita el calendario
+      del Paso 02 para que agendes tu llamada de onboarding.
+    </p>
+  </div>
 
   <!-- Formulario propio (reemplaza al embed de Airtable) -->
   <div class="marco-form" id="marco-form">
@@ -124,8 +126,6 @@
           <p class="form-texto">Respondé las preguntas de abajo para que podamos preparar tu plan de acción. Los campos con <span class="form-req">*</span> son obligatorios.</p>
         </div>
 
-  <fieldset class="form-grupo">
-    <legend class="form-grupo-titulo">Tus datos</legend>
     <div class="form-grid">
     <div class="form-campo">
       <label class="form-label" for="nombre_apellido">Nombre y apellido <span class="form-req" aria-hidden="true">*</span></label>
@@ -147,12 +147,7 @@
       <p class="form-ayuda">Formato: dd/mm/aaaa</p>
       <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="" required>
     </div>
-    </div>
-  </fieldset>
 
-  <fieldset class="form-grupo">
-    <legend class="form-grupo-titulo">Tu marca</legend>
-    <div class="form-grid">
     <div class="form-campo">
       <label class="form-label" for="nombre_marca">Nombre de tu marca <span class="form-req" aria-hidden="true">*</span></label>
       <input class="form-control" type="text" id="nombre_marca" name="nombre_marca" placeholder="" required>
@@ -182,12 +177,7 @@
       <p class="form-ayuda">Sí / No. ¿Cuántos y cuáles son sus responsabilidades?</p>
       <textarea class="form-control" id="empleados" name="empleados" rows="2" placeholder="" required></textarea>
     </div>
-    </div>
-  </fieldset>
 
-  <fieldset class="form-grupo">
-    <legend class="form-grupo-titulo">Números de tu negocio</legend>
-    <div class="form-grid">
     <div class="form-campo">
       <label class="form-label" for="facturacion_promedio">Facturación promedio <span class="form-req" aria-hidden="true">*</span></label>
       <p class="form-ayuda">Últimos 12 meses, en USD</p>
@@ -220,12 +210,7 @@
       <p class="form-ayuda">Sí / No. En caso de que no, ¿qué otra cosa hacés?</p>
       <textarea class="form-control" id="dedicacion" name="dedicacion" rows="2" placeholder="" required></textarea>
     </div>
-    </div>
-  </fieldset>
 
-  <fieldset class="form-grupo">
-    <legend class="form-grupo-titulo">Marketing</legend>
-    <div class="form-grid">
     <div class="form-campo">
       <label class="form-label" for="meta_ads">¿Hacés publicidad actualmente en Meta Ads? <span class="form-req" aria-hidden="true">*</span></label>
       <div class="form-opciones" role="radiogroup" aria-label="¿Hacés publicidad actualmente en Meta Ads?">
@@ -268,85 +253,69 @@
       <p class="form-ayuda">Si es así, ¿qué frecuencia de envíos tiene?</p>
       <textarea class="form-control" id="newsletter" name="newsletter" rows="2" placeholder="" required></textarea>
     </div>
-    </div>
-  </fieldset>
 
-  <fieldset class="form-grupo">
-    <legend class="form-grupo-titulo">Dónde estás y a dónde vas</legend>
-    <div class="form-grid">
     <div class="form-campo">
       <label class="form-label" for="desafios">Describí los principales desafíos que enfrentás para crecer <span class="form-req" aria-hidden="true">*</span></label>
       <p class="form-ayuda">¿Qué problemas tenés? ¿Qué te da miedo o te frustra?</p>
-      <textarea class="form-control" id="desafios" name="desafios" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="desafios" name="desafios" rows="2" placeholder="" required></textarea>
     </div>
 
     <div class="form-campo">
       <label class="form-label" for="diferencias">Si comparás tu yo actual con el yo que querés ser después del programa, ¿qué diferencias te gustaría notar? <span class="form-req" aria-hidden="true">*</span></label>
-      <textarea class="form-control" id="diferencias" name="diferencias" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="diferencias" name="diferencias" rows="2" placeholder="" required></textarea>
     </div>
 
     <div class="form-campo">
       <label class="form-label" for="vision">¿Dónde te ves con tu marca en los próximos 5 a 10 años? <span class="form-req" aria-hidden="true">*</span></label>
       <p class="form-ayuda">¿Cuál es tu aspiración máxima?</p>
-      <textarea class="form-control" id="vision" name="vision" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="vision" name="vision" rows="2" placeholder="" required></textarea>
     </div>
-    </div>
-  </fieldset>
 
-  <fieldset class="form-grupo">
-    <legend class="form-grupo-titulo">Tu experiencia hasta acá</legend>
-    <div class="form-grid">
     <div class="form-campo">
       <label class="form-label" for="inversiones_previas">¿Invertiste en otros cursos, programas o mentorías? <span class="form-req" aria-hidden="true">*</span></label>
       <p class="form-ayuda">Si es así, ¿en cuáles y qué experiencia tuviste?</p>
-      <textarea class="form-control" id="inversiones_previas" name="inversiones_previas" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="inversiones_previas" name="inversiones_previas" rows="2" placeholder="" required></textarea>
     </div>
 
     <div class="form-campo">
       <label class="form-label" for="agencia_anterior">¿Qué no te gustaba de la agencia o persona anterior que gestionaba tu marca? <span class="form-req" aria-hidden="true">*</span></label>
-      <textarea class="form-control" id="agencia_anterior" name="agencia_anterior" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="agencia_anterior" name="agencia_anterior" rows="2" placeholder="" required></textarea>
     </div>
 
     <div class="form-campo">
       <label class="form-label" for="no_funciono">¿Qué intentaste hasta ahora para vender más que NO te funcionó? <span class="form-req" aria-hidden="true">*</span></label>
-      <textarea class="form-control" id="no_funciono" name="no_funciono" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="no_funciono" name="no_funciono" rows="2" placeholder="" required></textarea>
     </div>
 
     <div class="form-campo">
       <label class="form-label" for="si_funciono">¿Qué intentaste hasta ahora para vender más que SÍ te funcionó? <span class="form-req" aria-hidden="true">*</span></label>
-      <textarea class="form-control" id="si_funciono" name="si_funciono" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="si_funciono" name="si_funciono" rows="2" placeholder="" required></textarea>
     </div>
-    </div>
-  </fieldset>
 
-  <fieldset class="form-grupo">
-    <legend class="form-grupo-titulo">Referencias y estrategia</legend>
-    <div class="form-grid">
     <div class="form-campo">
       <label class="form-label" for="competencia_nacional">5 empresas o marcas que sean competencia directa a nivel nacional, o que te inspiren <span class="form-req" aria-hidden="true">*</span></label>
       <p class="form-ayuda">Una por línea</p>
-      <textarea class="form-control" id="competencia_nacional" name="competencia_nacional" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="competencia_nacional" name="competencia_nacional" rows="2" placeholder="" required></textarea>
     </div>
 
     <div class="form-campo">
       <label class="form-label" for="inspiracion_internacional">5 empresas o marcas que te inspiren a nivel internacional <span class="form-req" aria-hidden="true">*</span></label>
       <p class="form-ayuda">Una por línea</p>
-      <textarea class="form-control" id="inspiracion_internacional" name="inspiracion_internacional" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="inspiracion_internacional" name="inspiracion_internacional" rows="2" placeholder="" required></textarea>
     </div>
 
     <div class="form-campo">
       <label class="form-label" for="alianzas">¿Hiciste alianzas estratégicas con otras marcas o influencers? <span class="form-req" aria-hidden="true">*</span></label>
       <p class="form-ayuda">Si es así, describilas brevemente junto con los resultados que obtuviste.</p>
-      <textarea class="form-control" id="alianzas" name="alianzas" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="alianzas" name="alianzas" rows="2" placeholder="" required></textarea>
     </div>
 
     <div class="form-campo">
       <label class="form-label" for="black_friday">¿Hiciste alguna vez un Cyber Monday o Black Friday con una estrategia completa? <span class="form-req" aria-hidden="true">*</span></label>
       <p class="form-ayuda">Si es así, contanos en detalle qué se hizo. Contanos también qué tenés pensado hacer este año.</p>
-      <textarea class="form-control" id="black_friday" name="black_friday" rows="3" placeholder="" required></textarea>
+      <textarea class="form-control" id="black_friday" name="black_friday" rows="2" placeholder="" required></textarea>
     </div>
     </div>
-  </fieldset>
 
         <p class="form-error" id="form-error" hidden></p>
 
@@ -358,17 +327,15 @@
       </form>
   </div>
 
-  <!-- Confirmación: reemplaza al formulario una vez enviado -->
+  <!-- Confirmación compacta: reemplaza a todo el Paso 01 una vez enviado -->
   <div class="paso-hecho" id="form-hecho" hidden>
     <div class="paso-hecho-check" aria-hidden="true">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 12.5l4.5 4.5L19 7.5"></path>
       </svg>
     </div>
-    <div>
-      <p class="paso-hecho-titulo">Formulario enviado</p>
-      <p class="paso-hecho-texto">Ya recibimos tu información. Si necesitás corregir algo, <a href="#ayuda">escribinos</a>.</p>
-    </div>
+    <p class="paso-hecho-titulo">Paso 01 · Formulario completado</p>
+    <p class="paso-hecho-texto">¿Necesitás corregir algo? <a href="#ayuda">Escribinos</a>.</p>
   </div>
 
 </article>
@@ -492,8 +459,8 @@
       var error    = document.getElementById('form-error');
       var marco    = document.getElementById('marco-form');
       var hecho    = document.getElementById('form-hecho');
-      var aviso    = document.getElementById('paso-1-aviso');
-      var num1     = document.getElementById('paso-1-num');
+      var intro    = document.getElementById('paso-1-intro');
+      var paso1    = document.getElementById('paso-1');
       var estado1  = document.getElementById('estado-1');
       var salto2   = document.getElementById('salto-2');
       var estado2  = document.getElementById('estado-2');
@@ -523,10 +490,9 @@
         estado2.textContent = recienEnviado ? 'Estás acá' : 'Habilitado';
 
         marco.hidden = true;
-        aviso.hidden = true;
+        intro.hidden = true;
         hecho.hidden = false;
-        num1.textContent = 'Paso 01 · Completado';
-        document.getElementById('paso-1').classList.add('paso--hecho');
+        paso1.classList.add('paso--compacto');
         estado1.innerHTML = CHECK + 'Completado';
         estado1.classList.add('is-ok');
 

@@ -374,9 +374,7 @@
   </div>
 
     <!-- Calendario: sin cargar hasta que se envía el formulario -->
-  <div class="marco-embed marco-embed--agenda" id="agenda" hidden>
-   <div class="tidycal-embed" data-path="team/peakk-media/onboarding"></div>
-  </div>
+  <div class="marco-embed marco-embed--agenda" id="agenda" hidden></div>
 
 </article>
 
@@ -475,21 +473,45 @@
         'stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">' +
         '<path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>';
 
+      /* ── crear e inicializar el embed de TidyCal (solo una vez) ── */
+      var tidycalCargado = false;
+      function cargarTidyCal() {
+        if (tidycalCargado) return;
+        tidycalCargado = true;
+
+        var div = document.createElement('div');
+        div.className = 'tidycal-embed';
+        div.setAttribute('data-path', 'team/peakk-media/onboarding');
+        agenda.appendChild(div);
+
+        function iniciar(intentos) {
+          if (window.TidyCal && typeof window.TidyCal.init === 'function') {
+            window.TidyCal.init(div);
+          } else if (intentos < 50) {
+            // El script de TidyCal (asset-tidycal.b-cdn.net) puede no
+            // haber terminado de cargar todavía; reintentamos un rato.
+            setTimeout(function () { iniciar(intentos + 1); }, 100);
+          } else {
+            console.warn('TidyCal no cargó. Revisá que el script embed.js no esté bloqueado.');
+          }
+        }
+        iniciar(0);
+      }
+
       /* ── habilitar el calendario ── */
       function abrirCalendario(recienEnviado) {
         if (abierto) return;
         abierto = true;
 
+        // Primero mostramos el contenedor y RECIÉN DESPUÉS creamos el
+        // embed de TidyCal. Si el <div class="tidycal-embed"> existiera
+        // desde el principio, TidyCal lo convertiría en <iframe> apenas
+        // carga la página, mientras el contenedor todavía está oculto
+        // (display:none) — y ahí calcula mal el tamaño y queda roto.
+        // Creándolo acá, con el contenedor ya visible, se inicializa bien.
         bloqueo.hidden = true;
         agenda.hidden = false;
-
-        // El embed de TidyCal es un <div class="tidycal-embed">, no un
-        // <iframe>. Como arrancó oculto, forzamos a TidyCal a
-        // (re)inicializarlo ahora que es visible.
-        if (window.TidyCal && typeof window.TidyCal.init === 'function') {
-          var destino = agenda.querySelector('.tidycal-embed');
-          if (destino) window.TidyCal.init(destino);
-        }
+        cargarTidyCal();
 
         salto2.className = 'salto salto--activo';
         estado2.textContent = recienEnviado ? 'Estás acá' : 'Habilitado';

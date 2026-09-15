@@ -53,6 +53,12 @@
       f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-TSXGCTTX');
   </script>
+
+  <!-- Script de TidyCal movido al <head> para que esté disponible
+       desde el arranque, en vez de depender de que se cargue recién
+       cuando el usuario llega a la sección del calendario (que
+       empieza oculta). -->
+  <script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
 </head>
 <body>
   <noscript>
@@ -370,7 +376,6 @@
     <!-- Calendario: sin cargar hasta que se envía el formulario -->
   <div class="marco-embed marco-embed--agenda" id="agenda" hidden>
    <div class="tidycal-embed" data-path="team/peakk-media/onboarding"></div>
-   <script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
   </div>
 
 </article>
@@ -441,6 +446,8 @@
       1) manda todas las respuestas al webhook de Zapier
       2) marca el Paso 01 como completado
       3) le saca el candado al calendario del Paso 02
+         y le pide a TidyCal que renderice el widget
+         (estaba oculto, así que hay que re-inicializarlo)
     Si la persona vuelve desde el mismo navegador, el calendario
     sigue habilitado (queda guardado en localStorage).
   -->
@@ -461,7 +468,6 @@
       var estado2  = document.getElementById('estado-2');
       var bloqueo  = document.getElementById('agenda-bloqueada');
       var agenda   = document.getElementById('agenda');
-      var iframe   = agenda.querySelector('iframe');
       var abierto  = false;
 
       var CHECK = '<span class="salto-check" aria-hidden="true">' +
@@ -474,12 +480,16 @@
         if (abierto) return;
         abierto = true;
 
-        if (!iframe.getAttribute('src')) {
-          iframe.setAttribute('src', iframe.getAttribute('data-src'));
-        }
-
         bloqueo.hidden = true;
         agenda.hidden = false;
+
+        // El embed de TidyCal es un <div class="tidycal-embed">, no un
+        // <iframe>. Como arrancó oculto, forzamos a TidyCal a
+        // (re)inicializarlo ahora que es visible.
+        if (window.TidyCal && typeof window.TidyCal.init === 'function') {
+          var destino = agenda.querySelector('.tidycal-embed');
+          if (destino) window.TidyCal.init(destino);
+        }
 
         salto2.className = 'salto salto--activo';
         estado2.textContent = recienEnviado ? 'Estás acá' : 'Habilitado';

@@ -37,6 +37,10 @@
     {
       "source": "/confirma-tu-llamada-video",
       "destination": "/confirma-tu-llamada-video.html"
+    },
+    {
+      "source": "/whatsapp",
+      "destination": "/whatsapp.html"
     }
   ],
   "headers": [

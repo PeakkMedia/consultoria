@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Abriendo WhatsApp…</title>
+
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center;
+         font-family: system-ui, sans-serif; background: #fff; color: #111; text-align: center; padding: 16px; }
+  a { color: #128C7E; }
+</style>
+</head>
+<body>
+  <p>Abriendo WhatsApp…<br><a id="enlace" href="#">Tocá acá si no se abre solo</a></p>
+<script>
+/* ══════════════════════════════════════════════════════════════
+   Peakk Media — redirección general a WhatsApp
+   ──────────────────────────────────────────────────────────────
+   ✏️  PARA CAMBIAR EL NÚMERO: editá solo NUMERO acá abajo.
+       Formato: código de país + 9 + área + número, sin espacios
+       ni guiones ni "+".  Ej: 54 9 11 4422-6608 → 5491144226608
+
+   ✏️  PARA CAMBIAR O AGREGAR MENSAJES: editá MENSAJES.
+
+   Cómo se usa en los botones:
+     href="/whatsapp"               → mensaje "escalar" (por defecto)
+     href="/whatsapp?m=agenda"      → mensaje "agenda"
+     href="/whatsapp?m=onboarding"  → mensaje "onboarding"
+     href="/whatsapp?m=nico"        → mensaje "nico"
+     href="/whatsapp?texto=Hola"    → texto libre (sin tocar este archivo)
+   ══════════════════════════════════════════════════════════════ */
+
+var NUMERO = '5491144226608';
+
+var MENSAJES = {
+  escalar:    'Hola! Quiero escalar mi marca online con Peakk Media.',
+  agenda:     'Hola! Acabo de agendar mi llamada con Peakk Media.',
+  onboarding: 'Hola! Estoy haciendo el onboarding y necesito una mano.',
+  nico:       'Hola Nico!'
+};
+
+var MENSAJE_POR_DEFECTO = 'escalar';
+
+/* ── no hace falta tocar nada de acá para abajo ─────────────── */
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var texto = params.get('texto') || MENSAJES[params.get('m')] || MENSAJES[MENSAJE_POR_DEFECTO] || '';
+  var url = 'https://wa.me/' + NUMERO.replace(/\D/g, '') + (texto ? '?text=' + encodeURIComponent(texto) : '');
+  var enlace = document.getElementById('enlace');
+  if (enlace) enlace.href = url;
+  window.location.replace(url);
+})();
+</script>
+</body>
+</html>

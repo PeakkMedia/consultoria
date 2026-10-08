@@ -16,7 +16,8 @@
   <p>Abriendo WhatsApp…<br><a id="enlace" href="#">Tocá acá si no se abre solo</a></p>
 <script>
 
-var NUMERO = '5491144226608';
+/* ── para cambiar numero modificar aca abajo─────────────── */
+var NUMERO = '5491173300777';
 
 var MENSAJES = {
   escalar:    'Hola! Quiero escalar mi marca online con Peakk Media.',
@@ -25,9 +26,8 @@ var MENSAJES = {
   nico:       'Hola Nico!'
 };
 
-var MENSAJE_POR_DEFECTO = 'escalar';
+var MENSAJE_POR_DEFECTO = 'Hola Nico!';
 
-/* ── no hace falta tocar nada de acá para abajo ─────────────── */
 (function () {
   var params = new URLSearchParams(window.location.search);
   var texto = params.get('texto') || MENSAJES[params.get('m')] || MENSAJES[MENSAJE_POR_DEFECTO] || '';

@@ -41,6 +41,10 @@
     {
       "source": "/whatsapp",
       "destination": "/whatsapp.html"
+    },
+    {
+      "source": "/vsl",
+      "destination": "/vsl.html"
     }
   ],
   "headers": [

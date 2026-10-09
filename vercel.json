@@ -57,5 +57,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/vsl",
+      "destination": "/cyber",
+      "permanent": false
+    }
   ]
 }

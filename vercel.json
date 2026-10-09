@@ -43,8 +43,8 @@
       "destination": "/whatsapp.html"
     },
     {
-      "source": "/cybermonday",
-      "destination": "/cybermonday.html"
+      "source": "/landing",
+      "destination": "/landing.html"
     }
   ],
   "headers": [

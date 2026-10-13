@@ -23,6 +23,10 @@
       "destination": "/confirmacion-pre-llamada-proyeccion.html"
     },
     {
+      "source": "/confirmacion",
+      "destination": "/confirmacion.html"
+    },
+    {
       "source": "/politicas-de-privacidad-page",
       "destination": "/politicas-de-privacidad-page.html"
     },

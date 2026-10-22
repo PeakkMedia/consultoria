@@ -187,7 +187,7 @@
   margin-bottom: 12px;
 }
 
-.paso .bajada { max-width: 60ch; }
+.paso .bajada { max-width: none; }
 .paso .acciones { margin-top: 24px; }
 
 .paso-lista {

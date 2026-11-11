@@ -95,7 +95,28 @@
     <h2>Reservá tu llamada de consultoría</h2>
     <p class="bajada">Descubrí las tres palancas de crecimiento más grandes escondidas en tu tienda, y cómo activarlas en los próximos 30 días.</p>
 
-    <div class="iclosed-widget" data-url="https://app.iclosed.io/e/peakkmedia/consultoria-peakk-1" title="Consultoria Peakk" style="width: 100%; height: 620px"></div> <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+    <div class="iclosed-widget" data-url="https://app.iclosed.io/e/peakkmedia/consultoria-peakk-1" title="Consultoria Peakk" style="width: 100%; height: 620px"></div>
+    <script>
+      /* ── origen por URL limpia ───────────────────────────────────
+         peakkmedia.com/tiktok muestra esta misma landing (rewrite en
+         vercel.json, sin redirección). Como la barra no lleva ?utm_…,
+         acá se lo pasamos directo al calendario de iClosed.
+         Para sumar otro canal: la ruta en vercel.json + una línea acá.
+         ─────────────────────────────────────────────────────────── */
+      (function () {
+        var ORIGENES = {
+          '/tiktok': 'utm_source=bio-tt'
+        };
+        var ruta = location.pathname.replace(/\/+$/, '').toLowerCase();
+        var utm = ORIGENES[ruta];
+        if (!utm || /[?&]utm_source=/.test(location.search)) return;
+        var cal = document.querySelector('.iclosed-widget');
+        if (!cal) return;
+        var url = cal.getAttribute('data-url');
+        cal.setAttribute('data-url', url + (url.indexOf('?') === -1 ? '?' : '&') + utm);
+      })();
+    </script>
+    <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
   </div>
 </section>
 

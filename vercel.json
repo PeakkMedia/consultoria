@@ -52,7 +52,7 @@
     },
     {
       "source": "/tt",
-      "destination": "/index.html"
+      "destination": "/index"
     }
   ],
   "headers": [

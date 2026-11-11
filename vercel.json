@@ -49,6 +49,10 @@
     {
       "source": "/landing",
       "destination": "/landing.html"
+    },
+    {
+      "source": "/tiktok",
+      "destination": "/index.html"
     }
   ],
   "headers": [

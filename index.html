@@ -101,13 +101,35 @@
          peakkmedia.com/tiktok muestra esta misma landing (rewrite en
          vercel.json, sin redirección). Como la barra no lleva ?utm_…,
          acá se lo pasamos directo al calendario de iClosed.
-         Para sumar otro canal: la ruta en vercel.json + una línea acá.
+         Además, todos los botones de WhatsApp de la página usan el
+         mensaje del canal (las claves están en MENSAJES de whatsapp.html).
+         Para sumar otro canal: la ruta en vercel.json + una línea en
+         ORIGENES (y en WHATSAPP si lleva mensaje propio).
          ─────────────────────────────────────────────────────────── */
       (function () {
         var ORIGENES = {
           '/tt': 'utm_source=bio-tt'
         };
+        var WHATSAPP = {
+          '/tt': 'tiktok'
+        };
         var ruta = location.pathname.replace(/\/+$/, '').toLowerCase();
+
+        var mensaje = WHATSAPP[ruta];
+        if (mensaje) {
+          var cambiarWhatsapp = function () {
+            var links = document.querySelectorAll('a[href^="/whatsapp"]');
+            for (var i = 0; i < links.length; i++) {
+              links[i].setAttribute('href', '/whatsapp?m=' + mensaje);
+            }
+          };
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', cambiarWhatsapp);
+          } else {
+            cambiarWhatsapp();
+          }
+        }
+
         var utm = ORIGENES[ruta];
         if (!utm || /[?&]utm_source=/.test(location.search)) return;
         var cal = document.querySelector('.iclosed-widget');

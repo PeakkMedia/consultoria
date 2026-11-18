@@ -11,6 +11,10 @@
       "destination": "/calendario.html"
     },
     {
+      "source": "/agendar",
+      "destination": "/agendar.html"
+    },
+    {
       "source": "/calendario-proyeccion",
       "destination": "/calendario-proyeccion.html"
     },

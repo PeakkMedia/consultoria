@@ -55,6 +55,10 @@
       "destination": "/landing.html"
     },
     {
+      "source": "/dm",
+      "destination": "/dm.html"
+    },
+    {
       "source": "/tt",
       "destination": "/index"
     }

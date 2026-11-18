@@ -3,6 +3,7 @@
    /calendario · /calendario-proyeccion
    /confirmacion-pre-llamada · /confirmacion-pre-llamada-proyeccion
    /politicas-de-privacidad-page · /terminos-y-condiciones
+   /onboarding · /dm
    ══════════════════════════════════════════════════════════════ */
 
 .sec { position: relative; }
@@ -772,6 +773,137 @@ input[type="date"].form-control { color-scheme: dark; }
 }
 
 .salto--activo .salto-estado { color: var(--oliva-claro); }
+
+/* ── cuestionario de DM ads (/dm) ───────────────────────────
+   Dos preguntas antes de pasar a WhatsApp. Reusa el formulario
+   de onboarding; acá solo va lo propio de esta página.
+   ─────────────────────────────────────────────────────────── */
+
+.sec--cabecera-dm { padding-bottom: clamp(18px, 3vw, 28px); }
+
+/* el resplandor de la cabecera se funde con el fondo en vez de cortarse en seco */
+.sec--cabecera-dm::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  background: linear-gradient(rgba(20,19,15,0), var(--tinta));
+  pointer-events: none;
+}
+
+.sec--cabecera-dm .wrap { z-index: 1; }
+.sec--cabecera-dm .pildora { margin-bottom: 22px; }
+.sec--cabecera-dm h1 { margin-bottom: 16px; }
+
+.sec--cuestionario {
+  padding: 0 0 clamp(64px, 8vw, 100px);
+}
+
+.sec--cuestionario .wrap { max-width: 680px; }
+
+.sec--cuestionario .marco-form { margin-top: 0; }
+.sec--cuestionario .form-grid { gap: 26px; margin-top: 0; }
+
+/* fieldset sin el marco ni el sangrado que trae el navegador */
+.form-pregunta {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.form-pregunta legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font-size: clamp(17px, 2vw, 19px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+}
+
+.form-num {
+  display: block;
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--oliva-claro);
+  margin-bottom: 7px;
+}
+
+/* opciones apiladas, de ancho completo y cómodas de tocar */
+.form-opciones--lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+
+.form-opciones--lista .form-opcion {
+  display: flex;
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15.5px;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.sec--cuestionario .form-enviar { width: 100%; }
+.sec--cuestionario .form-pie {
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+}
+
+/* pantallas finales: listo / no califica */
+.cuestionario-final {
+  border: 1px solid var(--linea);
+  border-radius: 24px;
+  background: var(--tinta-2);
+  padding: clamp(32px, 5vw, 52px) clamp(20px, 4vw, 40px);
+  text-align: center;
+}
+
+.cuestionario-final-icono {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
+  border-radius: 99px;
+  background: var(--oliva);
+  color: var(--hueso);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cuestionario-final-icono--no {
+  background: rgba(196,92,62,.16);
+  border: 1px solid rgba(196,92,62,.45);
+  color: var(--hueso);
+}
+
+.cuestionario-final-titulo {
+  font-size: clamp(21px, 2.4vw, 26px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  color: var(--hueso);
+  margin: 0 0 10px;
+}
+
+.cuestionario-final-texto {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--texto-2);
+  max-width: 44ch;
+  margin: 0 auto 10px;
+}
+
+.cuestionario-final .acciones {
+  justify-content: center;
+  margin-top: 22px;
+}
 
 /* ── páginas legales ────────────────────────────────────────── */
 
